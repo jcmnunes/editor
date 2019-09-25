@@ -1,0 +1,46 @@
+{
+  "name": "@binarycapsule/editor",
+  "version": "0.0.0-development",
+  "dependencies": {
+    "react": "^16.9.0",
+    "react-dom": "^16.9.0",
+    "react-scripts": "3.1.2"
+  },
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject",
+    "semantic-release": "semantic-release"
+  },
+  "eslintConfig": {
+    "extends": "react-app"
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/jcmnunes/editor.git"
+  },
+  "devDependencies": {
+    "semantic-release": "^15.13.24"
+  },
+  "description": "",
+  "bugs": {
+    "url": "https://github.com/jcmnunes/editor/issues"
+  },
+  "homepage": "https://github.com/jcmnunes/editor#readme",
+  "main": "index.js",
+  "author": "Jose C. Nunes <jn@josenunes.xyz> (https://josenunes.xyz/)",
+  "license": "MIT"
+}
