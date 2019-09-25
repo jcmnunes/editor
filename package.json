@@ -1,11 +1,7 @@
 {
   "name": "@binarycapsule/editor",
   "version": "0.0.0-development",
-  "dependencies": {
-    "react": "^16.9.0",
-    "react-dom": "^16.9.0",
-    "react-scripts": "3.1.2"
-  },
+  "dependencies": {},
   "files": [
     "commonjs",
     "esm",
@@ -43,6 +39,9 @@
     "url": "https://github.com/jcmnunes/editor.git"
   },
   "devDependencies": {
+    "react": "^16.9.0",
+    "react-dom": "^16.9.0",
+    "react-scripts": "3.1.2",
     "@babel/cli": "^7.6.2",
     "@babel/core": "^7.6.2",
     "@babel/plugin-proposal-class-properties": "^7.5.5",
@@ -52,6 +51,10 @@
     "babel-plugin-styled-components": "^1.10.6",
     "babel-preset-react-app": "^9.0.2",
     "semantic-release": "^15.13.24"
+  },
+  "peerDependencies": {
+    "react": "^16.9.0",
+    "react-dom": "^16.9.0"
   },
   "description": "",
   "bugs": {
