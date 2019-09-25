@@ -8,7 +8,11 @@
   },
   "scripts": {
     "start": "react-scripts start",
-    "build": "react-scripts build",
+    "clean": "rm -rf commonjs && rm -rf esm",
+    "build:app": "react-scripts build",
+    "build-commonjs": "BABEL_ENV=commonjs babel src/lib --out-dir commonjs --source-maps inline",
+    "build-esm": "BABEL_ENV=esm babel src/lib --out-dir esm --source-maps inline",
+    "build": "npm run clean && npm run build-commonjs && npm run build-esm",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "semantic-release": "semantic-release"
@@ -33,6 +37,14 @@
     "url": "https://github.com/jcmnunes/editor.git"
   },
   "devDependencies": {
+    "@babel/cli": "^7.6.2",
+    "@babel/core": "^7.6.2",
+    "@babel/plugin-proposal-class-properties": "^7.5.5",
+    "@babel/plugin-transform-runtime": "^7.6.2",
+    "@babel/preset-env": "^7.6.2",
+    "@babel/preset-react": "^7.0.0",
+    "babel-plugin-styled-components": "^1.10.6",
+    "babel-preset-react-app": "^9.0.2",
     "semantic-release": "^15.13.24"
   },
   "description": "",
