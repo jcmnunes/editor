@@ -1,7 +1,15 @@
 {
   "name": "@binarycapsule/editor",
   "version": "0.0.0-development",
-  "dependencies": {},
+  "description": "Markdown editor used by BinaryCapsule.",
+  "author": "Jose C. Nunes <jn@josenunes.xyz> (https://josenunes.xyz/)",
+  "license": "MIT",
+  "homepage": "https://github.com/jcmnunes/editor#readme",
+  "bugs": {
+    "url": "https://github.com/jcmnunes/editor/issues"
+  },
+  "main": "commonjs/index.js",
+  "module": "esm/index.js",
   "files": [
     "commonjs",
     "esm",
@@ -16,8 +24,16 @@
     "build-esm": "BABEL_ENV=esm babel src/lib --out-dir esm --source-maps inline",
     "build": "npm run clean && npm run build-commonjs && npm run build-esm",
     "test": "react-scripts test",
+    "format": "pretty-quick --staged",
+    "lint": "eslint ./src/**/*.{js,jsx}",
+    "test:nowatch": "CI=true npm run test",
     "eject": "react-scripts eject",
     "semantic-release": "semantic-release"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "npm run format && npm run lint && npm run test:nowatch"
+    }
   },
   "eslintConfig": {
     "extends": "react-app"
@@ -38,10 +54,8 @@
     "type": "git",
     "url": "https://github.com/jcmnunes/editor.git"
   },
+  "dependencies": {},
   "devDependencies": {
-    "react": "^16.9.0",
-    "react-dom": "^16.9.0",
-    "react-scripts": "3.1.2",
     "@babel/cli": "^7.6.2",
     "@babel/core": "^7.6.2",
     "@babel/plugin-proposal-class-properties": "^7.5.5",
@@ -50,18 +64,23 @@
     "@babel/preset-react": "^7.0.0",
     "babel-plugin-styled-components": "^1.10.6",
     "babel-preset-react-app": "^9.0.2",
+    "eslint-config-airbnb": "^18.0.1",
+    "eslint-config-prettier": "^6.3.0",
+    "eslint-plugin-import": "^2.18.2",
+    "eslint-plugin-jest": "^22.17.0",
+    "eslint-plugin-jsx-a11y": "^6.2.3",
+    "eslint-plugin-prettier": "^3.1.1",
+    "eslint-plugin-react": "^7.14.3",
+    "husky": "^3.0.7",
+    "prettier": "^1.18.2",
+    "pretty-quick": "^1.11.1",
+    "react": "^16.9.0",
+    "react-dom": "^16.9.0",
+    "react-scripts": "3.1.2",
     "semantic-release": "^15.13.24"
   },
   "peerDependencies": {
     "react": "^16.9.0",
     "react-dom": "^16.9.0"
-  },
-  "description": "",
-  "bugs": {
-    "url": "https://github.com/jcmnunes/editor/issues"
-  },
-  "homepage": "https://github.com/jcmnunes/editor#readme",
-  "main": "index.js",
-  "author": "Jose C. Nunes <jn@josenunes.xyz> (https://josenunes.xyz/)",
-  "license": "MIT"
+  }
 }

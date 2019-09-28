@@ -1,0 +1,22 @@
+{
+  "extends": ["airbnb", "react-app", "plugin:prettier/recommended", "plugin:import/errors"],
+  "rules": {
+    "no-debugger": 2,
+    "no-alert": 2,
+    "no-console": 2,
+    "react/destructuring-assignment": 0,
+    "no-underscore-dangle": 0,
+    "react/jsx-one-expression-per-line": 0,
+    "import/no-extraneous-dependencies": 0,
+    "react/jsx-props-no-spreading": 0,
+    "react/state-in-constructor": 0,
+    "no-nested-ternary": 0
+  },
+  "settings": {
+    "import/resolver": {
+      "node": {
+        "extensions": [".js", ".jsx"]
+      }
+    }
+  }
+}
