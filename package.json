@@ -17,7 +17,7 @@
     "LICENSE"
   ],
   "scripts": {
-    "start": "react-scripts start",
+    "start": "react-scripts start --no-cache",
     "clean": "rm -rf commonjs && rm -rf esm",
     "build:app": "react-scripts build",
     "build-commonjs": "BABEL_ENV=commonjs babel src/lib --out-dir commonjs --source-maps inline",
@@ -54,33 +54,43 @@
     "type": "git",
     "url": "https://github.com/jcmnunes/editor.git"
   },
-  "dependencies": {},
+  "dependencies": {
+    "immutable": "^4.0.0-rc.12",
+    "prop-types": "^15.7.2",
+    "slate": "^0.47.8",
+    "slate-paste-linkify": "^0.7.0",
+    "slate-react": "^0.22.9",
+    "slate-react-placeholder": "^0.2.8"
+  },
   "devDependencies": {
-    "@babel/cli": "^7.6.2",
-    "@babel/core": "^7.6.2",
+    "@babel/cli": "^7.6.4",
+    "@babel/core": "^7.6.4",
     "@babel/plugin-proposal-class-properties": "^7.5.5",
     "@babel/plugin-transform-runtime": "^7.6.2",
-    "@babel/preset-env": "^7.6.2",
-    "@babel/preset-react": "^7.0.0",
+    "@babel/preset-env": "^7.6.3",
+    "@babel/preset-react": "^7.6.3",
+    "@binarycapsule/ui-capsules": "^1.7.2",
+    "@types/styled-components": "^4.1.19",
     "babel-plugin-styled-components": "^1.10.6",
     "babel-preset-react-app": "^9.0.2",
     "eslint-config-airbnb": "^18.0.1",
-    "eslint-config-prettier": "^6.3.0",
+    "eslint-config-prettier": "^6.4.0",
     "eslint-plugin-import": "^2.18.2",
-    "eslint-plugin-jest": "^22.17.0",
+    "eslint-plugin-jest": "^22.19.0",
     "eslint-plugin-jsx-a11y": "^6.2.3",
     "eslint-plugin-prettier": "^3.1.1",
-    "eslint-plugin-react": "^7.14.3",
-    "husky": "^3.0.7",
+    "eslint-plugin-react": "^7.16.0",
+    "husky": "^3.0.9",
     "prettier": "^1.18.2",
-    "pretty-quick": "^1.11.1",
-    "react": "^16.9.0",
-    "react-dom": "^16.9.0",
-    "react-scripts": "3.1.2",
-    "semantic-release": "^15.13.24"
+    "pretty-quick": "^2.0.0",
+    "react": "^16.10.2",
+    "react-dom": "^16.10.2",
+    "react-scripts": "3.2.0",
+    "semantic-release": "^15.13.27",
+    "styled-components": "^4.4.0"
   },
   "peerDependencies": {
-    "react": "^16.9.0",
-    "react-dom": "^16.9.0"
+    "react": "^16.10.2",
+    "react-dom": "^16.10.2"
   }
 }
