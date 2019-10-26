@@ -11,7 +11,6 @@ import commands from './commands';
 import queries from './queries';
 
 export const StyledEditor = styled(SlateEditor)`
-  padding: 24px;
   font-weight: 400;
   color: ${theme.neutral700};
   font-size: 16px;
@@ -55,14 +54,14 @@ export const StyledEditor = styled(SlateEditor)`
     display: block;
     list-style-type: disc;
     margin: 10px 0;
-    padding-left: 40px;
+    padding-left: 24px;
   }
 
   ol {
     display: block;
     list-style-type: decimal;
     margin: 10px 0;
-    padding-left: 40px;
+    padding-left: 24px;
   }
 `;
 
