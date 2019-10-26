@@ -16,6 +16,12 @@ export const StyledEditor = styled(SlateEditor)`
   color: ${theme.neutral700};
   font-size: 16px;
 
+  & > h1:first-child,
+  & > h2:first-child,
+  & > h3:first-child {
+    margin-top: 0;
+  }
+
   strong {
     font-weight: 700;
   }
