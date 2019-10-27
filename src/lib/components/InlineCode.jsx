@@ -7,7 +7,7 @@ const InlineCode = styled.code.attrs({
   background: ${theme.neutral050};
   border-radius: 4px;
   border: 1px solid ${theme.neutral100};
-  padding: 2px 6px;
+  padding: 2px 4px;
   font-family: 'Hack', Menlo, monospace;
   font-size: 85%;
 `;

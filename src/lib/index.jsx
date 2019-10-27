@@ -2,7 +2,6 @@ import React, { useMemo } from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import { Editor as SlateEditor } from 'slate-react';
-import { theme } from '@binarycapsule/ui-capsules';
 import nodes from './nodes';
 import marks from './marks';
 import inlines from './inlines';
@@ -12,7 +11,7 @@ import queries from './queries';
 
 export const StyledEditor = styled(SlateEditor)`
   font-weight: 400;
-  color: ${theme.neutral700};
+  color: #3e4c59;
   font-size: 16px;
 
   & > h1:first-child,
@@ -33,20 +32,20 @@ export const StyledEditor = styled(SlateEditor)`
     font-size: 28px;
     margin: 32px 0 16px;
     font-weight: 700;
-    color: ${theme.neutral800};
+    color: #323f4b;
   }
 
   h2 {
     font-size: 20px;
     font-weight: 700;
-    color: ${theme.neutral800};
+    color: #323f4b;
     margin: 18px 0 8px;
   }
 
   h3 {
     font-size: 18px;
     font-weight: 700;
-    color: ${theme.neutral800};
+    color: #323f4b;
     margin: 12px 0 6px;
   }
 
