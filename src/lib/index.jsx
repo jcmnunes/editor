@@ -2,7 +2,6 @@ import React, { useMemo } from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import { Editor as SlateEditor } from 'slate-react';
-import { theme } from '@binarycapsule/ui-capsules';
 import nodes from './nodes';
 import marks from './marks';
 import inlines from './inlines';
@@ -11,10 +10,15 @@ import commands from './commands';
 import queries from './queries';
 
 export const StyledEditor = styled(SlateEditor)`
-  padding: 24px;
   font-weight: 400;
-  color: ${theme.neutral700};
+  color: #3e4c59;
   font-size: 16px;
+
+  & > h1:first-child,
+  & > h2:first-child,
+  & > h3:first-child {
+    margin-top: 0;
+  }
 
   strong {
     font-weight: 700;
@@ -28,20 +32,20 @@ export const StyledEditor = styled(SlateEditor)`
     font-size: 28px;
     margin: 32px 0 16px;
     font-weight: 700;
-    color: ${theme.neutral800};
+    color: #323f4b;
   }
 
   h2 {
     font-size: 20px;
     font-weight: 700;
-    color: ${theme.neutral800};
+    color: #323f4b;
     margin: 18px 0 8px;
   }
 
   h3 {
     font-size: 18px;
     font-weight: 700;
-    color: ${theme.neutral800};
+    color: #323f4b;
     margin: 12px 0 6px;
   }
 
@@ -49,14 +53,14 @@ export const StyledEditor = styled(SlateEditor)`
     display: block;
     list-style-type: disc;
     margin: 10px 0;
-    padding-left: 40px;
+    padding-left: 24px;
   }
 
   ol {
     display: block;
     list-style-type: decimal;
     margin: 10px 0;
-    padding-left: 40px;
+    padding-left: 24px;
   }
 `;
 
