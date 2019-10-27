@@ -4,7 +4,11 @@ import MarkdownShortcuts from './MarkdownShortcuts';
 import KeyboardBehavior from './KeyboardBehavior';
 
 const createPlugins = ({ placeholder }) => [
-  PasteLinkify(),
+  PasteLinkify({
+    isActiveQuery: 'isLinkActive',
+    wrapCommand: 'wrapLink',
+    unwrapCommand: 'unwrapLink',
+  }),
   MarkdownShortcuts(),
   KeyboardBehavior(),
   PlaceholderPlugin({

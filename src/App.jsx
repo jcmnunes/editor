@@ -24,6 +24,7 @@ export const Heading = styled.h1`
 `;
 
 export const StyledEditor = styled(Editor)`
+  padding: 24px;
   background: #fff;
   border-radius: 8px;
   min-height: 300px;
