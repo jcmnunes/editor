@@ -86,7 +86,7 @@
     "react": "^16.11.0",
     "react-dom": "^16.11.0",
     "react-scripts": "3.2.0",
-    "semantic-release": "^15.13.28",
+    "semantic-release": "^17.2.3",
     "styled-components": "^4.4.0"
   },
   "peerDependencies": {
