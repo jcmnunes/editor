@@ -1,42 +1,74 @@
 {
-  "name": "@binarycapsule/editor",
-  "version": "0.0.0-development",
-  "description": "Markdown editor used by BinaryCapsule.",
-  "author": "Jose C. Nunes <jn@josenunes.xyz> (https://josenunes.xyz/)",
-  "license": "MIT",
-  "homepage": "https://github.com/jcmnunes/editor#readme",
-  "bugs": {
-    "url": "https://github.com/jcmnunes/editor/issues"
+  "name": "editor",
+  "version": "0.1.0",
+  "private": true,
+  "dependencies": {
+    "markdown-it": "^12.0.4",
+    "prosemirror-commands": "^1.1.4",
+    "prosemirror-dropcursor": "^1.3.2",
+    "prosemirror-example-setup": "^1.1.2",
+    "prosemirror-history": "^1.1.3",
+    "prosemirror-inputrules": "^1.1.3",
+    "prosemirror-keymap": "^1.1.4",
+    "prosemirror-markdown": "^1.5.0",
+    "prosemirror-model": "^1.13.1",
+    "prosemirror-schema-basic": "^1.1.2",
+    "prosemirror-schema-list": "^1.1.4",
+    "prosemirror-state": "^1.3.3",
+    "prosemirror-view": "^1.16.5"
   },
-  "main": "commonjs/index.js",
-  "module": "esm/index.js",
-  "files": [
-    "commonjs",
-    "esm",
-    "README.md",
-    "LICENSE"
-  ],
+  "devDependencies": {
+    "@binarycapsule/ui-capsules": "^4.1.4",
+    "@emotion/react": "^11.1.5",
+    "@emotion/styled": "^11.1.5",
+    "@styled-system/should-forward-prop": "^5.1.5",
+    "@testing-library/jest-dom": "^5.11.8",
+    "@testing-library/react": "^11.2.3",
+    "@testing-library/user-event": "^12.6.0",
+    "@types/jest": "^26.0.20",
+    "@types/markdown-it": "^12.0.1",
+    "@types/node": "^12.19.12",
+    "@types/prosemirror-commands": "^1.0.3",
+    "@types/prosemirror-dev-tools": "^2.1.0",
+    "@types/prosemirror-dropcursor": "^1.0.0",
+    "@types/prosemirror-history": "^1.0.1",
+    "@types/prosemirror-inputrules": "^1.0.3",
+    "@types/prosemirror-keymap": "^1.0.3",
+    "@types/prosemirror-markdown": "^1.5.0",
+    "@types/prosemirror-model": "^1.11.1",
+    "@types/prosemirror-schema-list": "^1.0.1",
+    "@types/prosemirror-state": "^1.2.5",
+    "@types/prosemirror-view": "^1.16.1",
+    "@types/react": "^16.14.2",
+    "@types/react-dom": "^16.9.10",
+    "@types/react-modal": "^3.12.0",
+    "@types/styled-system": "^5.1.10",
+    "eslint-plugin-prettier": "^3.3.1",
+    "prettier": "^2.2.1",
+    "react": "^17.0.1",
+    "react-dom": "^17.0.1",
+    "react-scripts": "4.0.1",
+    "styled-system": "^5.1.5",
+    "typescript": "^4.1.3",
+    "web-vitals": "^0.2.4"
+  },
+  "peerDependencies": {
+    "@emotion/react": "^11.1.5",
+    "@emotion/styled": "^11.1.5",
+    "react": "^17.0.1",
+    "react-dom": "^17.0.1"
+  },
   "scripts": {
-    "start": "react-scripts start --no-cache",
-    "clean": "rm -rf commonjs && rm -rf esm",
-    "build:app": "react-scripts build",
-    "build-commonjs": "BABEL_ENV=commonjs babel src/lib --out-dir commonjs --source-maps inline",
-    "build-esm": "BABEL_ENV=esm babel src/lib --out-dir esm --source-maps inline",
-    "build": "npm run clean && npm run build-commonjs && npm run build-esm",
+    "start": "react-scripts start",
+    "build": "react-scripts build",
     "test": "react-scripts test",
-    "format": "pretty-quick --staged",
-    "lint": "eslint ./src/**/*.{js,jsx}",
-    "test:nowatch": "CI=true npm run test",
-    "eject": "react-scripts eject",
-    "semantic-release": "semantic-release"
-  },
-  "husky": {
-    "hooks": {
-      "pre-commit": "npm run format && npm run lint && npm run test:nowatch"
-    }
+    "eject": "react-scripts eject"
   },
   "eslintConfig": {
-    "extends": "react-app"
+    "extends": [
+      "react-app",
+      "react-app/jest"
+    ]
   },
   "browserslist": {
     "production": [
@@ -49,48 +81,5 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
-  },
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/jcmnunes/editor.git"
-  },
-  "dependencies": {
-    "immutable": "^4.0.0-rc.12",
-    "prop-types": "^15.7.2",
-    "slate": "^0.47.8",
-    "slate-paste-linkify": "^0.7.0",
-    "slate-react": "^0.22.9",
-    "slate-react-placeholder": "^0.2.8"
-  },
-  "devDependencies": {
-    "@babel/cli": "^7.6.4",
-    "@babel/core": "^7.6.4",
-    "@babel/plugin-proposal-class-properties": "^7.5.5",
-    "@babel/plugin-transform-runtime": "^7.6.2",
-    "@babel/preset-env": "^7.6.3",
-    "@babel/preset-react": "^7.6.3",
-    "@binarycapsule/ui-capsules": "^1.7.2",
-    "@types/styled-components": "^4.1.19",
-    "babel-plugin-styled-components": "^1.10.6",
-    "babel-preset-react-app": "^9.0.2",
-    "eslint-config-airbnb": "^18.0.1",
-    "eslint-config-prettier": "^6.4.0",
-    "eslint-plugin-import": "^2.18.2",
-    "eslint-plugin-jest": "^22.20.1",
-    "eslint-plugin-jsx-a11y": "^6.2.3",
-    "eslint-plugin-prettier": "^3.1.1",
-    "eslint-plugin-react": "^7.16.0",
-    "husky": "^3.0.9",
-    "prettier": "^1.18.2",
-    "pretty-quick": "^2.0.0",
-    "react": "^16.11.0",
-    "react-dom": "^16.11.0",
-    "react-scripts": "3.2.0",
-    "semantic-release": "^15.13.28",
-    "styled-components": "^4.4.0"
-  },
-  "peerDependencies": {
-    "react": "^16.11.0",
-    "react-dom": "^16.11.0"
   }
 }
