@@ -67,8 +67,8 @@ export const schema = new Schema({
         },
       ],
 
-      toDOM: function toDOM(node) {
-        return ['pre', node.attrs.params ? { 'data-params': node.attrs.params } : {}, ['code', 0]];
+      toDOM: () => {
+        return ['pre', { spellCheck: 'false' }, ['code', 0]];
       },
     },
 

@@ -1,9 +1,8 @@
 import styled from '@emotion/styled';
-import { ProseMirror } from './Prosemirror';
 
 const px = (value: number) => `${value}px`;
 
-export const StyledEditor = styled(ProseMirror)`
+export const StyledEditor = styled.div`
   color: ${({ theme }) => theme.colors.neutral['700']};
   background: ${({ theme }) => theme.colors.bg};
   font-family: ${({ theme }) => theme.fontFamily};
@@ -11,7 +10,7 @@ export const StyledEditor = styled(ProseMirror)`
   font-weight: ${({ theme }) => theme.fontWeights['400']};
   line-height: ${({ theme }) => theme.lineHeights.body};
   width: 100%;
-  // height: 100%;
+  height: 100%;
   display: flex;
   flex-direction: column;
   flex: 1 1 0;
@@ -25,12 +24,48 @@ export const StyledEditor = styled(ProseMirror)`
     -webkit-font-variant-ligatures: none;
     font-variant-ligatures: none;
     font-feature-settings: 'liga' 0; /* the above doesn't seem to work in Edge */
-    height: 150px;
+    height: 100%;
     overflow-y: auto;
   }
 
   pre {
     white-space: pre-wrap;
+    position: relative;
+    border-radius: 4px;
+    -webkit-font-smoothing: initial;
+    direction: ltr;
+    text-align: left;
+    word-spacing: normal;
+    word-break: normal;
+    tab-size: 4;
+    hyphens: none;
+    overflow: auto;
+    margin-bottom: 16px;
+    border: 1px solid ${({ theme }) => theme.colors.neutral['100']};
+    background: ${({ theme }) => theme.colors.neutral['50']};
+
+    code {
+      display: block;
+      overflow-x: auto;
+      padding: 0.5em 0.65em;
+      line-height: 1.6em;
+      font-size: ${({ theme }) => px(theme.fontSizes.small)};
+    }
+  }
+
+  .ProseMirror p > code {
+    padding: 2px;
+    border-radius: 3px;
+    border: 1px solid ${({ theme }) => theme.colors.neutral['200']};
+    background: ${({ theme }) => theme.colors.neutral['50']};
+    font-size: ${({ theme }) => px(theme.fontSizes.small)};
+  }
+
+  p,
+  pre,
+  ul,
+  ol {
+    margin-bottom: 16px;
   }
 
   li {
@@ -51,6 +86,10 @@ export const StyledEditor = styled(ProseMirror)`
     margin-block-start: 1em;
     margin-block-end: 1em;
     padding-inline-start: 40px;
+  }
+
+  ol {
+    list-style-type: decimal;
   }
 
   li {
@@ -410,12 +449,5 @@ export const StyledEditor = styled(ProseMirror)`
   .ProseMirror p {
     margin-bottom: 1em;
     line-height: ${({ theme }) => theme.lineHeights.body};
-  }
-
-  .ProseMirror code {
-    padding: 2px;
-    border-radius: 3px;
-    border: 1px solid ${({ theme }) => theme.colors.neutral['200']};
-    background: ${({ theme }) => theme.colors.neutral['50']};
   }
 `;

@@ -1,6 +1,6 @@
 import '@binarycapsule/ui-capsules/assets/global.css';
 import * as React from 'react';
-import { forwardRef, useImperativeHandle, useRef, useState } from 'react';
+import { forwardRef, useCallback, useEffect, useImperativeHandle, useRef, useState } from 'react';
 import { history } from 'prosemirror-history';
 import { keymap } from 'prosemirror-keymap';
 import { Schema } from 'prosemirror-model';
@@ -10,6 +10,7 @@ import { EditorState } from 'prosemirror-state';
 import { theme, ThemeProvider } from '@binarycapsule/ui-capsules';
 import { EditorView } from 'prosemirror-view';
 import { inputRules } from 'prosemirror-inputrules';
+import applyDevTools from 'prosemirror-dev-tools';
 import { buildKeymap } from './keymap';
 import { schema } from './schema';
 import { parser } from './parser';
@@ -23,11 +24,14 @@ interface Props {
   onChange?(val: string): void;
 }
 
-export const Editor = forwardRef<any, Props>(({ defaultValue, readonly }, ref) => {
-  const viewRef = useRef<{ view: EditorView }>();
+export const Editor = forwardRef<any, Props>(({ defaultValue, readonly, onChange }, ref) => {
+  const viewRef = useRef<EditorView>();
+  const editorRef = useRef<HTMLDivElement>(null!);
 
-  const [state, setState] = useState(() =>
-    EditorState.create<Schema>({
+  const [, forceUpdate] = useState({});
+
+  useEffect(() => {
+    const state = EditorState.create<Schema>({
       doc: parser.parse(defaultValue || ''),
       schema,
       plugins: [
@@ -37,29 +41,56 @@ export const Editor = forwardRef<any, Props>(({ defaultValue, readonly }, ref) =
         keymap(baseKeymap),
         dropCursor(),
       ],
-    }),
-  );
+    });
+
+    const view = new EditorView(editorRef.current, {
+      state,
+      editable: () => !readonly,
+      dispatchTransaction: transaction => {
+        if (viewRef.current) {
+          const { state, transactions } = viewRef.current.state.applyTransaction(transaction);
+
+          viewRef.current?.updateState(state);
+
+          if (transactions.some(tr => tr.docChanged) && onChange) {
+            onChange(getValue());
+          }
+        }
+
+        forceUpdate({});
+      },
+    });
+
+    applyDevTools(view);
+
+    viewRef.current = view;
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
+  useEffect(() => {
+    viewRef.current?.update({
+      ...viewRef.current?.props,
+      editable: () => !readonly,
+    });
+  }, [readonly]);
 
   useImperativeHandle(ref, () => ({
     get view() {
-      return viewRef.current?.view;
+      return viewRef.current;
     },
 
     get value() {
-      return viewRef.current?.view.state.doc
-        ? serializer.serialize(viewRef.current.view.state.doc)
-        : '';
+      return getValue();
     },
   }));
 
+  const getValue = useCallback(() => {
+    return viewRef.current?.state.doc ? serializer.serialize(viewRef.current.state.doc) : '';
+  }, []);
+
   return (
     <ThemeProvider theme={theme}>
-      <StyledEditor
-        state={state}
-        onChange={setState}
-        ref={viewRef as any}
-        editable={() => !readonly}
-      />
+      <StyledEditor ref={editorRef} />
     </ThemeProvider>
   );
 });
