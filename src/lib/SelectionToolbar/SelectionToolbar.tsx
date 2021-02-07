@@ -76,6 +76,14 @@ export const SelectionToolbar: React.FC<Props> = ({ view }) => {
         />
 
         <ToolbarButton
+          icon="strikethrough"
+          isActive={isMarkActive(view.state, view.state.schema.marks.strikethrough)}
+          onClick={() =>
+            toggleMark(view.state.schema.marks.strikethrough)(view.state, view?.dispatch)
+          }
+        />
+
+        <ToolbarButton
           icon="inlineCode"
           isActive={isMarkActive(view.state, view.state.schema.marks.code)}
           onClick={() => toggleMark(view.state.schema.marks.code)(view.state, view?.dispatch)}

@@ -2,7 +2,7 @@ import { MarkdownParser } from 'prosemirror-markdown';
 import markdownit from 'markdown-it';
 import { schema } from './schema';
 
-export const parser = new MarkdownParser(schema, markdownit('commonmark', { html: false }), {
+export const parser = new MarkdownParser(schema, markdownit('default', { html: false }), {
   blockquote: { block: 'blockquote' },
 
   paragraph: { block: 'paragraph' },
@@ -44,4 +44,6 @@ export const parser = new MarkdownParser(schema, markdownit('commonmark', { html
   },
 
   code_inline: { mark: 'code', noCloseToken: true },
+
+  s: { mark: 'strikethrough' },
 });

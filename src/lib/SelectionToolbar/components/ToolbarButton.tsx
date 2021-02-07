@@ -3,6 +3,7 @@ import styled from '@emotion/styled';
 import { Bold } from '../icons/bold';
 import { Italic } from '../icons/italic';
 import { InlineCode } from '../icons/inlineCode';
+import { Strikethrough } from '../icons/strikethrough';
 
 export const StyledButton = styled.button<{ isActive: boolean }>`
   display: inline-flex;
@@ -26,9 +27,10 @@ const iconMap = {
   bold: Bold,
   italic: Italic,
   inlineCode: InlineCode,
+  strikethrough: Strikethrough,
 };
 
-export type ToolbarIcon = 'bold' | 'italic' | 'inlineCode';
+export type ToolbarIcon = 'bold' | 'italic' | 'inlineCode' | 'strikethrough';
 
 interface Props extends React.ComponentPropsWithoutRef<'button'> {
   icon: ToolbarIcon;

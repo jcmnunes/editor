@@ -50,6 +50,10 @@ export const markInputRules = {
   code: (markType: MarkType) => {
     return markInputRule(/(?:^|[^`])(`([^`]+)`)$/, markType);
   },
+
+  strikethrough: (markType: MarkType) => {
+    return markInputRule(/(?:~~)([^*]+)(?:~~)$/, markType);
+  },
 };
 
 export const buildInputRules = (schema: Schema) => {

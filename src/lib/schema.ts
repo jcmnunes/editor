@@ -219,5 +219,21 @@ export const schema = new Schema({
       parseDOM: [{ tag: 'code' }],
       toDOM: () => ['code'],
     },
+
+    strikethrough: {
+      parseDOM: [
+        {
+          tag: 's',
+        },
+        {
+          tag: 'del',
+        },
+        {
+          tag: 'strike',
+        },
+      ],
+
+      toDOM: () => ['del', 0],
+    },
   },
 });

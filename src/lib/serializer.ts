@@ -113,6 +113,13 @@ export const serializer = new MarkdownSerializer(
 
       escape: false,
     },
+
+    strikethrough: {
+      open: '~~',
+      close: '~~',
+      mixable: true,
+      expelEnclosingWhitespace: true,
+    },
   },
 );
 
