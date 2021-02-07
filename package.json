@@ -1,7 +1,7 @@
 {
   "name": "@binarycapsule/editor",
   "version": "0.0.0-development",
-  "private": true,
+  "private": false,
   "main": "dist/index.js",
   "module": "dist/index.js",
   "typings": "dist/index.d.ts",
