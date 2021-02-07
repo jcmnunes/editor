@@ -3,7 +3,7 @@
   "plugins": ["prettier"],
   "rules": {
     "prettier/prettier": "warn",
-    "no-debugger": "error",
+    "no-debugger": "warn",
     "no-alert": "error",
     "no-console": "warn"
   },

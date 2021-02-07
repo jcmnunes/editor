@@ -16,6 +16,7 @@ import { parser } from './parser';
 import { serializer } from './serializer';
 import { buildInputRules } from './inputRules';
 import { StyledEditor } from './Editor.styles';
+import { SelectionToolbar } from './SelectionToolbar/SelectionToolbar';
 
 interface Props {
   defaultValue?: string;
@@ -87,5 +88,11 @@ export const Editor = forwardRef<any, Props>(({ defaultValue, readonly, onChange
     return viewRef.current?.state.doc ? serializer.serialize(viewRef.current.state.doc) : '';
   }, []);
 
-  return <StyledEditor ref={editorRef} />;
+  return (
+    <>
+      <SelectionToolbar view={viewRef.current} />
+
+      <StyledEditor ref={editorRef} />
+    </>
+  );
 });
