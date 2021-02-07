@@ -6,6 +6,9 @@ import { toggleMark } from 'prosemirror-commands';
 import { usePosition } from './hooks/usePosition';
 import { ToolbarButton } from './components/ToolbarButton';
 import { isMarkActive } from '../utils/isMarkActive';
+import { Separator } from './components/Separator';
+import { isNodeActive } from '../utils/isNodeActive';
+import { toggleBlockType } from '../utils/toggleBlockType';
 
 export const Wrapper = styled.div<{
   active?: boolean;
@@ -87,6 +90,26 @@ export const SelectionToolbar: React.FC<Props> = ({ view }) => {
           icon="inlineCode"
           isActive={isMarkActive(view.state, view.state.schema.marks.code)}
           onClick={() => toggleMark(view.state.schema.marks.code)(view.state, view?.dispatch)}
+        />
+
+        <Separator />
+
+        <ToolbarButton
+          icon="h1"
+          isActive={isNodeActive(view.state.schema.nodes.heading, view.state, { level: 1 })}
+          onClick={() => toggleBlockType(view.state.schema.nodes.heading, view, { level: 1 })}
+        />
+
+        <ToolbarButton
+          icon="h2"
+          isActive={isNodeActive(view.state.schema.nodes.heading, view.state, { level: 2 })}
+          onClick={() => toggleBlockType(view.state.schema.nodes.heading, view, { level: 2 })}
+        />
+
+        <ToolbarButton
+          icon="h3"
+          isActive={isNodeActive(view.state.schema.nodes.heading, view.state, { level: 3 })}
+          onClick={() => toggleBlockType(view.state.schema.nodes.heading, view, { level: 3 })}
         />
       </Container>
     </Wrapper>,

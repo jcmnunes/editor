@@ -4,6 +4,9 @@ import { Bold } from '../icons/bold';
 import { Italic } from '../icons/italic';
 import { InlineCode } from '../icons/inlineCode';
 import { Strikethrough } from '../icons/strikethrough';
+import { H1 } from '../icons/h1';
+import { H2 } from '../icons/h2';
+import { H3 } from '../icons/h3';
 
 export const StyledButton = styled.button<{ isActive: boolean }>`
   display: inline-flex;
@@ -28,9 +31,12 @@ const iconMap = {
   italic: Italic,
   inlineCode: InlineCode,
   strikethrough: Strikethrough,
+  h1: H1,
+  h2: H2,
+  h3: H3,
 };
 
-export type ToolbarIcon = 'bold' | 'italic' | 'inlineCode' | 'strikethrough';
+export type ToolbarIcon = 'bold' | 'italic' | 'inlineCode' | 'strikethrough' | 'h1' | 'h2' | 'h3';
 
 interface Props extends React.ComponentPropsWithoutRef<'button'> {
   icon: ToolbarIcon;
