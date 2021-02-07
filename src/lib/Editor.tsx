@@ -7,7 +7,6 @@ import { Schema } from 'prosemirror-model';
 import { baseKeymap } from 'prosemirror-commands';
 import { dropCursor } from 'prosemirror-dropcursor';
 import { EditorState } from 'prosemirror-state';
-import { theme, ThemeProvider } from '@binarycapsule/ui-capsules';
 import { EditorView } from 'prosemirror-view';
 import { inputRules } from 'prosemirror-inputrules';
 import applyDevTools from 'prosemirror-dev-tools';
@@ -88,9 +87,5 @@ export const Editor = forwardRef<any, Props>(({ defaultValue, readonly, onChange
     return viewRef.current?.state.doc ? serializer.serialize(viewRef.current.state.doc) : '';
   }, []);
 
-  return (
-    <ThemeProvider theme={theme}>
-      <StyledEditor ref={editorRef} />
-    </ThemeProvider>
-  );
+  return <StyledEditor ref={editorRef} />;
 });
