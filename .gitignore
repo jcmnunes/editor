@@ -10,6 +10,7 @@
 
 # production
 /build
+/dist
 /commonjs
 /esm
 
@@ -25,4 +26,6 @@ yarn-debug.log*
 yarn-error.log*
 
 # webstorm
-/.idea
+.idea
+
+.eslintcache
