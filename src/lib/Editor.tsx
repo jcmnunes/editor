@@ -1,4 +1,5 @@
 import '@binarycapsule/ui-capsules/assets/global.css';
+import 'prosemirror-gapcursor/style/gapcursor.css';
 import * as React from 'react';
 import { forwardRef, useCallback, useEffect, useImperativeHandle, useRef, useState } from 'react';
 import { history } from 'prosemirror-history';
@@ -6,6 +7,7 @@ import { keymap } from 'prosemirror-keymap';
 import { Schema } from 'prosemirror-model';
 import { baseKeymap } from 'prosemirror-commands';
 import { dropCursor } from 'prosemirror-dropcursor';
+import { gapCursor } from 'prosemirror-gapcursor';
 import { EditorState } from 'prosemirror-state';
 import { EditorView } from 'prosemirror-view';
 import { inputRules } from 'prosemirror-inputrules';
@@ -40,6 +42,7 @@ export const Editor = forwardRef<any, Props>(({ defaultValue, readonly, onChange
         keymap(buildKeymap(schema)),
         keymap(baseKeymap),
         dropCursor(),
+        gapCursor(),
       ],
     });
 
@@ -64,6 +67,25 @@ export const Editor = forwardRef<any, Props>(({ defaultValue, readonly, onChange
     applyDevTools(view);
 
     viewRef.current = view;
+
+    document.body.addEventListener(
+      'click',
+      evt => {
+        if (evt && evt.target && (evt.target as Element).classList.contains('editor-checkbox')) {
+          const { tr } = view.state;
+          const { top, left } = (evt.target as Element).getBoundingClientRect();
+          const result = view.posAtCoords({ top, left });
+
+          if (result) {
+            const transaction = tr.setNodeMarkup(result.inside, undefined, {
+              checked: (evt.target as any).checked,
+            });
+            view.dispatch(transaction);
+          }
+        }
+      },
+      true,
+    );
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 

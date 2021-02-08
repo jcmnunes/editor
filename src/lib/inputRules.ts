@@ -36,6 +36,10 @@ const nodeInputRules = {
       (match, node) => node.childCount + node.attrs.order === +match[1],
     );
   },
+
+  checkbox_list: (nodeType: NodeType) => {
+    return wrappingInputRule(/^-?\s*(\[])\s$/i, nodeType);
+  },
 };
 
 export const markInputRules = {

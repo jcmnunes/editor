@@ -122,6 +122,16 @@ export const StyledEditor = styled.div`
     font-size: ${({ theme }) => px(theme.fontSizes.h6)};
   }
 
+  ul.checkbox_list {
+    list-style: none;
+    padding: 0 0 0 8px;
+    margin: 0 0 16px;
+  }
+
+  ul.checkbox_list li {
+    display: flex;
+  }
+
   .ProseMirror-hideselection *::selection {
     background: transparent;
   }
@@ -347,8 +357,8 @@ export const StyledEditor = styled.div`
     line-height: 2px;
   }
 
-  .ProseMirror ul,
-  .ProseMirror ol {
+  ul,
+  ol {
     padding-left: 30px;
   }
 

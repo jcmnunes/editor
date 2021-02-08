@@ -135,5 +135,10 @@ export function buildKeymap(schema: Schema) {
     });
   }
 
+  if ((type = schema.nodes.checkbox_item)) {
+    bind('Enter', splitListItem(type));
+    bind('Tab', sinkListItem(type));
+  }
+
   return keys;
 }

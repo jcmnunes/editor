@@ -28,6 +28,10 @@ Integer posuere erat a ante **venenatis dapibus** posuere velit aliquet. Duis mo
 
 * asdasd
 
+- [ ] This is a task
+- [x] Action item completed
+- [ ] Do this
+
 Donec sed odio dui. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.
 
 ### Heading level 3
