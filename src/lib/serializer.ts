@@ -71,6 +71,15 @@ export const serializer = new MarkdownSerializer(
     text(state, node) {
       state.text(node.text!);
     },
+
+    checkbox_item(state, node) {
+      state.write(node.attrs.checked ? '[x] ' : '[ ] ');
+      state.renderContent(node);
+    },
+
+    checkbox_list(state, node) {
+      state.renderList(node, '  ', () => '- ');
+    },
   },
   {
     em: {
@@ -112,6 +121,13 @@ export const serializer = new MarkdownSerializer(
       },
 
       escape: false,
+    },
+
+    strikethrough: {
+      open: '~~',
+      close: '~~',
+      mixable: true,
+      expelEnclosingWhitespace: true,
     },
   },
 );
