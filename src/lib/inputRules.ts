@@ -1,6 +1,7 @@
 import {
   ellipsis,
   emDash,
+  InputRule,
   textblockTypeInputRule,
   wrappingInputRule,
 } from 'prosemirror-inputrules';
@@ -60,8 +61,10 @@ export const markInputRules = {
   },
 };
 
+const rightArrow = new InputRule(/->$/, '→');
+
 export const buildInputRules = (schema: Schema) => {
-  const result = [ellipsis, emDash];
+  const result = [ellipsis, emDash, rightArrow];
 
   Object.entries(nodeInputRules).forEach(([name, rule]) => {
     result.push(rule(schema.nodes[name]));

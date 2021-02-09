@@ -135,10 +135,17 @@ export function buildKeymap(schema: Schema) {
     });
   }
 
-  if ((type = schema.nodes.checkbox_item)) {
-    bind('Enter', splitListItem(type));
-    bind('Tab', sinkListItem(type));
-  }
-
   return keys;
 }
+
+export const buildKeymapCheckbox = (schema: Schema) => {
+  const type = schema.nodes.checkbox_item;
+
+  return {
+    Enter: splitListItem(type),
+    Tab: sinkListItem(type),
+    'Shift-Tab': liftListItem(type),
+    'Mod-]': sinkListItem(type),
+    'Mod-[': liftListItem(type),
+  };
+};
