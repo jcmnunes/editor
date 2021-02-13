@@ -11,7 +11,6 @@ import { gapCursor } from 'prosemirror-gapcursor';
 import { EditorState } from 'prosemirror-state';
 import { EditorView } from 'prosemirror-view';
 import { inputRules } from 'prosemirror-inputrules';
-import applyDevTools from 'prosemirror-dev-tools';
 import { buildKeymap, buildKeymapCheckbox } from './keymap';
 import { schema } from './schema';
 import { parser } from './parser';
@@ -68,8 +67,6 @@ export const Editor = forwardRef<any, Props>(({ defaultValue, readonly, onChange
         forceUpdate({});
       },
     });
-
-    applyDevTools(view);
 
     viewRef.current = view;
 
