@@ -270,6 +270,7 @@ export const schema = new Schema({
         {
           ...node.attrs,
           rel: 'noopener noreferrer nofollow',
+          target: '_blank',
         },
         0,
       ],

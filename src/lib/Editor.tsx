@@ -20,6 +20,7 @@ import { buildInputRules } from './inputRules';
 import { StyledEditor } from './Editor.styles';
 import { SelectionToolbar } from './SelectionToolbar/SelectionToolbar';
 import { paste } from './paste';
+import { click } from './click';
 
 interface Props {
   defaultValue?: string;
@@ -44,6 +45,7 @@ export const Editor = forwardRef<any, Props>(({ defaultValue, readonly, onChange
         keymap(buildKeymapCheckbox(schema)),
         keymap(baseKeymap),
         paste(schema),
+        click(schema),
         dropCursor(),
         gapCursor(),
       ],
@@ -114,7 +116,7 @@ export const Editor = forwardRef<any, Props>(({ defaultValue, readonly, onChange
 
   return (
     <>
-      <SelectionToolbar view={viewRef.current} />
+      {!readonly && <SelectionToolbar view={viewRef.current} />}
 
       <StyledEditor ref={editorRef} />
     </>

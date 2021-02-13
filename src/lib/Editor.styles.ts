@@ -144,6 +144,7 @@ export const StyledEditor = styled.div`
 
     a {
       color: ${({ theme }) => theme.colors.primary['500']};
+      cursor: pointer;
     }
   }
 
