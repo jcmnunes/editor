@@ -2,14 +2,12 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { EditorView } from 'prosemirror-view';
 import styled from '@emotion/styled';
-import { setBlockType, toggleMark } from 'prosemirror-commands';
 import { usePosition } from './hooks/usePosition';
-import { ToolbarButton } from './components/ToolbarButton';
 import { isMarkActive } from '../utils/isMarkActive';
-import { Separator } from './components/Separator';
 import { isNodeActive } from '../utils/isNodeActive';
-import { toggleWrap } from '../utils/toggleWrap';
-import { toggleList } from '../utils/toggleList';
+import { FormattingToolbar } from './components/FormattingToolbar';
+import { LinkToolbar } from './components/LinkToolbar';
+import { getMarkRange } from '../utils/getMarkRange';
 
 export const Wrapper = styled.div<{
   active?: boolean;
@@ -29,7 +27,6 @@ export const Wrapper = styled.div<{
   ${({ active }) =>
     active &&
     `
-    transform: translateY(-8px) scale(1);
     pointer-events: all;
     opacity: 1;
   `};
@@ -37,12 +34,6 @@ export const Wrapper = styled.div<{
   @media print {
     display: none;
   }
-`;
-
-export const Container = styled.div`
-  display: flex;
-  align-items: center;
-  padding: 5px 8px;
 `;
 
 interface Props {
@@ -56,9 +47,20 @@ export const SelectionToolbar: React.FC<Props> = ({ view }) => {
     return null;
   }
 
-  const isCodeSelection = isNodeActive(view.state.schema.nodes.code_block, view.state);
+  const { state } = view;
 
-  // toolbar is disabled in code blocks, no bold / italic etc
+  const {
+    schema: { nodes, marks },
+    selection,
+  } = state;
+
+  const isCodeSelection = isNodeActive(nodes.code_block, state);
+
+  const link = isMarkActive(state, marks.link);
+
+  const range = getMarkRange(state.selection.$from, marks.link);
+
+  // Toolbar should not be visible in code blocks
   if (isCodeSelection) {
     return null;
   }
@@ -67,97 +69,17 @@ export const SelectionToolbar: React.FC<Props> = ({ view }) => {
     <Wrapper
       ref={ref as any}
       offset={offset}
-      active={!view.state.selection.empty}
+      active={!selection.empty}
       style={{
         top: `${top}px`,
         left: `${left}px`,
       }}
     >
-      <Container>
-        <ToolbarButton
-          icon="bold"
-          isActive={isMarkActive(view.state, view.state.schema.marks.strong)}
-          onClick={() => toggleMark(view.state.schema.marks.strong)(view.state, view?.dispatch)}
-        />
-
-        <ToolbarButton
-          icon="italic"
-          isActive={isMarkActive(view.state, view.state.schema.marks.em)}
-          onClick={() => toggleMark(view.state.schema.marks.em)(view.state, view?.dispatch)}
-        />
-
-        <ToolbarButton
-          icon="strikethrough"
-          isActive={isMarkActive(view.state, view.state.schema.marks.strikethrough)}
-          onClick={() =>
-            toggleMark(view.state.schema.marks.strikethrough)(view.state, view?.dispatch)
-          }
-        />
-
-        <ToolbarButton
-          icon="inlineCode"
-          isActive={isMarkActive(view.state, view.state.schema.marks.code)}
-          onClick={() => toggleMark(view.state.schema.marks.code)(view.state, view?.dispatch)}
-        />
-
-        <Separator />
-
-        {/*<ToolbarButton*/}
-        {/*  icon="h1"*/}
-        {/*  isActive={isNodeActive(view.state.schema.nodes.heading, view.state, { level: 1 })}*/}
-        {/*  onClick={() => toggleBlockType(view.state.schema.nodes.heading, view, { level: 1 })}*/}
-        {/*/>*/}
-
-        {/*<ToolbarButton*/}
-        {/*  icon="h2"*/}
-        {/*  isActive={isNodeActive(view.state.schema.nodes.heading, view.state, { level: 2 })}*/}
-        {/*  onClick={() => toggleBlockType(view.state.schema.nodes.heading, view, { level: 2 })}*/}
-        {/*/>*/}
-
-        {/*<ToolbarButton*/}
-        {/*  icon="h3"*/}
-        {/*  isActive={isNodeActive(view.state.schema.nodes.heading, view.state, { level: 3 })}*/}
-        {/*  onClick={() => toggleBlockType(view.state.schema.nodes.heading, view, { level: 3 })}*/}
-        {/*/>*/}
-
-        <ToolbarButton
-          icon="blockquote"
-          isActive={isNodeActive(view.state.schema.nodes.blockquote, view.state)}
-          onClick={() => toggleWrap(view.state.schema.nodes.blockquote)(view.state, view?.dispatch)}
-        />
-
-        <ToolbarButton
-          icon="code"
-          isActive={isNodeActive(view.state.schema.nodes.code_block, view.state)}
-          onClick={() =>
-            setBlockType(view.state.schema.nodes.code_block)(view.state, view?.dispatch)
-          }
-        />
-
-        <Separator />
-
-        <ToolbarButton
-          icon="bulletList"
-          isActive={isNodeActive(view.state.schema.nodes.bullet_list, view.state)}
-          onClick={() =>
-            toggleList(view.state.schema.nodes.bullet_list, view.state.schema.nodes.list_item)(
-              view.state,
-              view?.dispatch,
-            )
-          }
-        />
-
-        <ToolbarButton
-          icon="orderedList"
-          isActive={isNodeActive(view.state.schema.nodes.ordered_list, view.state)}
-          onClick={() =>
-            toggleList(view.state.schema.nodes.ordered_list, view.state.schema.nodes.list_item)(
-              view.state,
-              view?.dispatch,
-            )
-          }
-        />
-      </Container>
+      {link && range ? (
+        <LinkToolbar view={view} mark={range.mark} from={range.from} to={range.to} />
+      ) : (
+        <FormattingToolbar view={view} />
+      )}
     </Wrapper>,
     document.body,
   );

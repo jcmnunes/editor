@@ -11,8 +11,12 @@ import { Code } from '../icons/code';
 import { BlockQuote } from '../icons/blockQuote';
 import { BulletList } from '../icons/bulletList';
 import { OrderedList } from '../icons/orderedList';
+import { ExternalLink } from '../icons/externalLink';
+import { TrashCan } from '../icons/trashCan';
+import { TodoList } from '../icons/todoList';
+import { Link } from '../icons/link';
 
-export const StyledButton = styled.button<{ isActive: boolean }>`
+export const StyledButton = styled.button<{ isActive?: boolean }>`
   display: inline-flex;
   justify-content: center;
   align-items: center;
@@ -28,6 +32,10 @@ export const StyledButton = styled.button<{ isActive: boolean }>`
   &:first-of-type {
     margin-left: 0;
   }
+
+  &:disabled {
+    opacity: 0.5;
+  }
 `;
 
 const iconMap = {
@@ -42,6 +50,10 @@ const iconMap = {
   blockquote: BlockQuote,
   bulletList: BulletList,
   orderedList: OrderedList,
+  externalLink: ExternalLink,
+  trashCan: TrashCan,
+  todoList: TodoList,
+  link: Link,
 };
 
 export type ToolbarIcon =
@@ -55,14 +67,18 @@ export type ToolbarIcon =
   | 'code'
   | 'blockquote'
   | 'bulletList'
-  | 'orderedList';
+  | 'orderedList'
+  | 'externalLink'
+  | 'trashCan'
+  | 'todoList'
+  | 'link';
 
-interface Props extends React.ComponentPropsWithoutRef<'button'> {
+interface ToolbarButtonProps extends React.ComponentPropsWithoutRef<'button'> {
   icon: ToolbarIcon;
-  isActive: boolean;
+  isActive?: boolean;
 }
 
-export const ToolbarButton: React.FC<Props> = ({ icon, ...rest }) => {
+export const ToolbarButton: React.FC<ToolbarButtonProps> = ({ icon, ...rest }) => {
   const Icon = iconMap[icon];
 
   return (
