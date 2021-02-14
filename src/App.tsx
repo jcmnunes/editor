@@ -28,7 +28,14 @@ Integer posuere erat a ante **venenatis dapibus** posuere velit aliquet. Duis mo
 
 * asdasd
 
+- [ ] This is a task
+- [x] Action item completed
+- [ ] Do this
+
 Donec sed odio dui. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.
+
+[Testing](https://www.example.org/)
+[https://www.example.com/](https://www.example.com/)
 
 ### Heading level 3
 
@@ -43,7 +50,7 @@ useEffect(() => {
 }, [readonly]);
 \`\`\`
 
-Integer posuere erat a ante venenatis dapibus posuere velit aliquet. Cras mattis consectetur purus sit amet fermentum. Donec sed odio dui. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Etiam porta sem malesuada magna mollis euismod. Nullam quis risus eget urna mollis ornare vel eu leo. Aenean lacinia bibendum nulla sed consectetur.`;
+Integer posuere erat a ~~ante venenatis~~ dapibus posuere velit aliquet. Cras mattis consectetur purus sit amet fermentum. Donec sed odio dui. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Etiam porta sem malesuada magna mollis euismod. Nullam quis risus eget urna mollis ornare vel eu leo. Aenean lacinia bibendum nulla sed consectetur.`;
 
 const EditorWrapper = styled(Box)(({ theme }) => ({
   width: 500,
@@ -64,12 +71,14 @@ function App() {
   }, [readonly]);
 
   const handleChange = useCallback(val => {
+    // eslint-disable-next-line no-console
     console.log(val);
   }, []);
 
   const handleSave = useCallback(() => {
     const val = editorRef.current?.value;
 
+    // eslint-disable-next-line no-console
     console.log(val);
   }, []);
 

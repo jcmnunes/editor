@@ -1,6 +1,7 @@
 import {
   ellipsis,
   emDash,
+  InputRule,
   textblockTypeInputRule,
   wrappingInputRule,
 } from 'prosemirror-inputrules';
@@ -36,6 +37,10 @@ const nodeInputRules = {
       (match, node) => node.childCount + node.attrs.order === +match[1],
     );
   },
+
+  checkbox_list: (nodeType: NodeType) => {
+    return wrappingInputRule(/^-?\s*(\[])\s$/i, nodeType);
+  },
 };
 
 export const markInputRules = {
@@ -50,10 +55,16 @@ export const markInputRules = {
   code: (markType: MarkType) => {
     return markInputRule(/(?:^|[^`])(`([^`]+)`)$/, markType);
   },
+
+  strikethrough: (markType: MarkType) => {
+    return markInputRule(/(?:~~)([^*]+)(?:~~)$/, markType);
+  },
 };
 
+const rightArrow = new InputRule(/->$/, '→');
+
 export const buildInputRules = (schema: Schema) => {
-  const result = [ellipsis, emDash];
+  const result = [ellipsis, emDash, rightArrow];
 
   Object.entries(nodeInputRules).forEach(([name, rule]) => {
     result.push(rule(schema.nodes[name]));

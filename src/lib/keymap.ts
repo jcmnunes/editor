@@ -76,6 +76,8 @@ export function buildKeymap(schema: Schema) {
 
   if ((type = schema.marks.code)) bind('Mod-`', toggleMark(type));
 
+  if ((type = schema.marks.strikethrough)) bind('Mod-d', toggleMark(type));
+
   if ((type = schema.nodes.bullet_list)) {
     bind('Shift-Ctrl-8', wrapInList(type));
   }
@@ -135,3 +137,15 @@ export function buildKeymap(schema: Schema) {
 
   return keys;
 }
+
+export const buildKeymapCheckbox = (schema: Schema) => {
+  const type = schema.nodes.checkbox_item;
+
+  return {
+    Enter: splitListItem(type),
+    Tab: sinkListItem(type),
+    'Shift-Tab': liftListItem(type),
+    'Mod-]': sinkListItem(type),
+    'Mod-[': liftListItem(type),
+  };
+};

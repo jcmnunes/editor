@@ -162,6 +162,67 @@ export const schema = new Schema({
         return ['br'];
       },
     },
+
+    checkbox_item: {
+      attrs: {
+        checked: {
+          default: false,
+        },
+      },
+      content: 'paragraph block*',
+      defining: true,
+      draggable: false,
+
+      parseDOM: [
+        {
+          tag: `li[data-type="checkbox_item"]`,
+          getAttrs: (dom: any) => ({
+            checked: dom.className.includes('checked'),
+          }),
+        },
+      ],
+
+      toDOM: (node: any) => {
+        const input = document.createElement('input');
+        input.type = 'checkbox';
+        input.classList.add('editor-checkbox');
+        input.style.marginTop = '2px';
+
+        if (node.attrs.checked) {
+          input.checked = true;
+        }
+
+        return [
+          'li',
+          {
+            'data-type': 'checkbox_item',
+            style: 'margin-bottom: 4px',
+            class: node.attrs.checked ? 'checked' : undefined,
+          },
+          [
+            'span',
+            {
+              contentEditable: 'false',
+            },
+            input,
+          ],
+          ['div', { style: 'padding-left: 4px; margin-top: -2px' }, 0],
+        ];
+      },
+    },
+
+    checkbox_list: {
+      group: 'block',
+      content: 'checkbox_item+',
+
+      toDOM: () => ['ul', { class: 'checkbox_list' }, 0],
+
+      parseDOM: [
+        {
+          tag: `[class="checkbox_list"]`,
+        },
+      ],
+    },
   },
 
   marks: {
@@ -209,6 +270,7 @@ export const schema = new Schema({
         {
           ...node.attrs,
           rel: 'noopener noreferrer nofollow',
+          target: '_blank',
         },
         0,
       ],
@@ -218,6 +280,22 @@ export const schema = new Schema({
       excludes: '_',
       parseDOM: [{ tag: 'code' }],
       toDOM: () => ['code'],
+    },
+
+    strikethrough: {
+      parseDOM: [
+        {
+          tag: 's',
+        },
+        {
+          tag: 'del',
+        },
+        {
+          tag: 'strike',
+        },
+      ],
+
+      toDOM: () => ['del', 0],
     },
   },
 });
