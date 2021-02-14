@@ -1,5 +1,7 @@
 {
   "name": "@binarycapsule/editor",
+  "description": "Prosemirror powered rich text editor.",
+  "license": "MIT",
   "version": "0.0.0-development",
   "private": false,
   "main": "dist/index.js",
