@@ -18,7 +18,7 @@ export const Wrapper = styled.div<{
   opacity: 0;
   border-radius: 4px;
   z-index: ${props => props.theme.zIndices.larger};
-  background-color: ${props => props.theme.colors.bg};
+  background-color: ${props => props.theme.colors.neutral['800']};
   box-sizing: border-box;
   pointer-events: none;
   white-space: nowrap;

@@ -7,8 +7,15 @@ export const StyledInput = styled.input(({ theme, width }) => ({
   padding: '6px 8px',
   margin: '0px 4px 0px 0px',
   fontSize: theme.fontSizes.small,
-  color: theme.colors.neutral['700'],
+  color: theme.colors.neutral['100'],
+  fontWeight: 500,
+  background: theme.colors.neutral['600'],
+  borderRadius: '2px',
   width,
+
+  '&:focus': {
+    outline: 'none',
+  },
 }));
 
 interface ToolbarInputProps extends React.ComponentPropsWithRef<'input'> {

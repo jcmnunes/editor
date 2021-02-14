@@ -35,7 +35,7 @@ export const FormattingToolbar: React.FC<Props> = ({ view }) => {
       />
 
       <ToolbarButton
-        icon="italic"
+        icon="italics"
         isActive={isMarkActive(state, marks.em)}
         onClick={() => toggleMark(marks.em)(state, dispatch)}
       />
@@ -47,7 +47,7 @@ export const FormattingToolbar: React.FC<Props> = ({ view }) => {
       />
 
       <ToolbarButton
-        icon="inlineCode"
+        icon="code-inline"
         isActive={isMarkActive(state, marks.code)}
         onClick={() => toggleMark(marks.code)(state, dispatch)}
       />
@@ -60,26 +60,8 @@ export const FormattingToolbar: React.FC<Props> = ({ view }) => {
 
       <Separator />
 
-      {/*<ToolbarButton*/}
-      {/*  icon="h1"*/}
-      {/*  isActive={isNodeActive(nodes.heading, view.state, { level: 1 })}*/}
-      {/*  onClick={() => toggleBlockType(nodes.heading, view, { level: 1 })}*/}
-      {/*/>*/}
-
-      {/*<ToolbarButton*/}
-      {/*  icon="h2"*/}
-      {/*  isActive={isNodeActive(nodes.heading, view.state, { level: 2 })}*/}
-      {/*  onClick={() => toggleBlockType(nodes.heading, view, { level: 2 })}*/}
-      {/*/>*/}
-
-      {/*<ToolbarButton*/}
-      {/*  icon="h3"*/}
-      {/*  isActive={isNodeActive(nodes.heading, view.state, { level: 3 })}*/}
-      {/*  onClick={() => toggleBlockType(nodes.heading, view, { level: 3 })}*/}
-      {/*/>*/}
-
       <ToolbarButton
-        icon="blockquote"
+        icon="double-quotes"
         isActive={isNodeActive(nodes.blockquote, view.state)}
         onClick={() => toggleWrap(nodes.blockquote)(state, dispatch)}
       />
@@ -93,19 +75,19 @@ export const FormattingToolbar: React.FC<Props> = ({ view }) => {
       <Separator />
 
       <ToolbarButton
-        icon="bulletList"
+        icon="list-unordered"
         isActive={isNodeActive(nodes.bullet_list, view.state)}
         onClick={() => toggleList(nodes.bullet_list, nodes.list_item)(view.state, dispatch)}
       />
 
       <ToolbarButton
-        icon="orderedList"
+        icon="list_ordered"
         isActive={isNodeActive(nodes.ordered_list, view.state)}
         onClick={() => toggleList(nodes.ordered_list, nodes.list_item)(view.state, dispatch)}
       />
 
       <ToolbarButton
-        icon="todoList"
+        icon="checkbox"
         isActive={isNodeActive(nodes.checkbox_list, view.state)}
         onClick={() => toggleList(nodes.checkbox_list, nodes.checkbox_item)(view.state, dispatch)}
       />

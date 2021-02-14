@@ -29,3 +29,5 @@ yarn-error.log*
 .idea
 
 .eslintcache
+
+binarycapsule-editor-0.0.0-development.tgz

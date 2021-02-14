@@ -85,13 +85,13 @@ export const LinkToolbar: React.FC<LinkToolbarProps> = ({ view, mark, from, to }
 
       {!!href && (
         <ToolbarButton
-          icon="externalLink"
+          icon="external-link"
           onClick={() => windowOpener(href)}
           style={{ marginLeft: 4 }}
         />
       )}
 
-      <ToolbarButton icon="trashCan" onClick={onRemoveLink} />
+      <ToolbarButton icon="bin" onClick={onRemoveLink} />
     </Wrapper>
   );
 };
