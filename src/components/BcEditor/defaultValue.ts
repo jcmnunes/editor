@@ -39,7 +39,7 @@ $ npm i @binarycapsule/editor
 
 ### Usage
 
-In the most simple implementation, pass a ref to the Editor. The editor's value can be accessed through it:
+As a minimal implementation, pass a ref to the Editor. The editor's value can be accessed through it:
 
 \`\`\`
 export const App = () => {
