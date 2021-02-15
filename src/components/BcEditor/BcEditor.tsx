@@ -2,14 +2,14 @@ import React from 'react';
 import { Box, Button, IconButton, Tooltip } from '@binarycapsule/ui-capsules';
 import { MarginProps } from '@binarycapsule/ui-capsules/dist/styledProps';
 import { Editor } from '../../lib';
-import { EditorWrapper, StyledBCEditor } from './BCEditor.styles';
-import { useBCEditor } from './useBCEditor';
+import { EditorWrapper, StyledBcEditor } from './BcEditor.styles';
+import { useBcEditor } from './useBcEditor';
 
 export const BcEditor: React.FC<MarginProps> = () => {
-  const { state, refs, handlers } = useBCEditor();
+  const { state, refs, handlers } = useBcEditor();
 
   return (
-    <StyledBCEditor>
+    <StyledBcEditor>
       <Box display="flex" justifyContent="space-between">
         {!state.isReadonly ? (
           <Box>
@@ -60,6 +60,6 @@ export const BcEditor: React.FC<MarginProps> = () => {
           onChange={handlers.handleChange}
         />
       </EditorWrapper>
-    </StyledBCEditor>
+    </StyledBcEditor>
   );
 };

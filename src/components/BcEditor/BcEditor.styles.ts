@@ -1,7 +1,7 @@
 import styled from '@emotion/styled';
 import { Box } from '@binarycapsule/ui-capsules';
 
-export const StyledBCEditor = styled.section`
+export const StyledBcEditor = styled.section`
   display: flex;
   flex-direction: column;
   margin: 0 48px;

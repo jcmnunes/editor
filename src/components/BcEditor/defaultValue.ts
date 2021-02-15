@@ -62,5 +62,5 @@ export const App = () => {
 };
 \`\`\`
 
-> Check the [source of this page](https://github.com/jcmnunes/editor/blob/master/src/components/BCEditor) for a more complete example.
+> Check the [source of this page](https://github.com/jcmnunes/editor/blob/master/src/components/BcEditor) for a more complete example.
 `;

@@ -3,7 +3,7 @@ import { EditorView } from 'prosemirror-view';
 import useLocalStorage from 'react-use/lib/useLocalStorage';
 import { defaultValue } from './defaultValue';
 
-export const useBCEditor = () => {
+export const useBcEditor = () => {
   const [isReadonly, setIsReadonly] = useState(false);
 
   const [editorKey, setEditorKey] = useState(Date.now());
