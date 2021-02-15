@@ -23,12 +23,13 @@ import { click } from './click';
 
 interface Props {
   defaultValue?: string;
-  readonly?: boolean;
+  isReadonly?: boolean;
   onChange?(val: string): void;
 }
 
-export const Editor = forwardRef<any, Props>(({ defaultValue, readonly, onChange }, ref) => {
+export const Editor = forwardRef<any, Props>(({ defaultValue, isReadonly, onChange }, ref) => {
   const viewRef = useRef<EditorView>();
+
   const editorRef = useRef<HTMLDivElement>(null!);
 
   const [, forceUpdate] = useState({});
@@ -52,7 +53,7 @@ export const Editor = forwardRef<any, Props>(({ defaultValue, readonly, onChange
 
     const view = new EditorView(editorRef.current, {
       state,
-      editable: () => !readonly,
+      editable: () => !isReadonly,
       dispatchTransaction: transaction => {
         if (viewRef.current) {
           const { state, transactions } = viewRef.current.state.applyTransaction(transaction);
@@ -93,9 +94,9 @@ export const Editor = forwardRef<any, Props>(({ defaultValue, readonly, onChange
   useEffect(() => {
     viewRef.current?.update({
       ...viewRef.current?.props,
-      editable: () => !readonly,
+      editable: () => !isReadonly,
     });
-  }, [readonly]);
+  }, [isReadonly]);
 
   useImperativeHandle(ref, () => ({
     get view() {
@@ -113,7 +114,7 @@ export const Editor = forwardRef<any, Props>(({ defaultValue, readonly, onChange
 
   return (
     <>
-      {!readonly && <SelectionToolbar view={viewRef.current} />}
+      {!isReadonly && <SelectionToolbar view={viewRef.current} />}
 
       <StyledEditor ref={editorRef} />
     </>
