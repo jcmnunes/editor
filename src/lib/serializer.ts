@@ -26,7 +26,7 @@ export const serializer = new MarkdownSerializer(
     },
 
     bullet_list(state, node) {
-      state.renderList(node, '  ', () => (node.attrs.bullet || '*') + ' ');
+      state.renderList(node, '  ', () => (node.attrs.bullet || '-') + ' ');
     },
 
     ordered_list(state, node) {
