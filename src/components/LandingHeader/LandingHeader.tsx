@@ -38,6 +38,7 @@ export const LandingHeader: React.FC = () => {
 
       <Button
         as="a"
+        // @ts-ignore
         href="https://github.com/jcmnunes/editor"
         leftIcon="github"
         variant="outline"
