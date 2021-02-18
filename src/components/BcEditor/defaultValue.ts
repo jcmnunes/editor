@@ -25,7 +25,7 @@ It contains also several marks, like;
 
 - [x] ~~strikethrough~~
 
-- [x] [links](https://uic.binarycapsule.com)
+- [x] [links](https://uic.binarycapsule.tech)
 
 ### Getting started
 
