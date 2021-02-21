@@ -10,6 +10,8 @@ export const useBcEditor = () => {
 
   const editorRef = React.useRef<EditorRef>(null);
 
+  const [editorKey, setEditorKey] = useState(Date.now());
+
   useEffect(() => {
     if (!isReadonly && editorRef.current?.view) {
       editorRef.current.view.focus();
@@ -40,6 +42,8 @@ export const useBcEditor = () => {
 
     setSavedValue(savedValue);
 
+    setEditorKey(Date.now());
+
     window.onbeforeunload = null;
   }, [savedValue, setSavedValue]);
 
@@ -53,12 +57,16 @@ export const useBcEditor = () => {
 
   const onResetValue = useCallback(() => {
     setSavedValue(defaultValue);
+
+    setEditorKey(Date.now());
   }, [setSavedValue]);
 
   return {
     state: {
       isReadonly,
       setIsReadonly,
+      editorKey,
+      setEditorKey,
       savedValue,
       setSavedValue,
     },
