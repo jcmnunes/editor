@@ -29,7 +29,7 @@
     "react-use": "^17.1.0"
   },
   "devDependencies": {
-    "@binarycapsule/ui-capsules": "^4.1.4",
+    "@binarycapsule/ui-capsules": "^4.1.5",
     "@emotion/react": "^11.1.5",
     "@emotion/styled": "^11.1.5",
     "@styled-system/should-forward-prop": "^5.1.5",
