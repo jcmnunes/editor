@@ -35,14 +35,10 @@ The Editor is available as an npm package:
 $ npm i @binarycapsule/editor
 \`\`\`
 
-Install peer dependencies:
+Peer dependencies:
 
 \`\`\`
-$ npm i markdown-it prosemirror-commands prosemirror-dropcursor prosemirror-gapcursor prosemirror-history prosemirror-inputrules prosemirror-keymap prosemirror-markdown prosemirror-model prosemirror-schema-list prosemirror-state prosemirror-view
-\`\`\`
-
-\`\`\`
-$ npm i -D @types/markdown-it @types/prosemirror-commands @types/prosemirror-dev-tools @types/prosemirror-dropcursor @types/prosemirror-gapcursor @types/prosemirror-history @types/prosemirror-inputrules @types/prosemirror-keymap @types/prosemirror-markdown @types/prosemirror-model @types/prosemirror-schema-list @types/prosemirror-state @types/prosemirror-view
+$ npm i react react-dom @emotion/react @emotion/styled
 \`\`\`
 
 ### Usage
@@ -51,7 +47,7 @@ As a minimal implementation, pass a ref to the Editor. The editor's value can be
 
 \`\`\`
 export const App = () => {
-  const editorRef = React.useRef<{ view: EditorView; value: string }>();
+  const editorRef = useRef<EditorRef>(null);
 
   return (
     <div>

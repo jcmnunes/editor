@@ -20,6 +20,12 @@ The Editor is available as an npm package:
 npm i @binarycapsule/editor
 ```
 
+Peer dependencies:
+
+```
+npm i react react-dom @emotion/react @emotion/styled
+```
+
 ## Usage
 
 As a minimal implementation, pass a ref to the Editor. The editor's value can be
