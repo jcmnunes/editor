@@ -25,6 +25,7 @@ export const StyledEditor = styled.div`
     font-feature-settings: 'liga' 0; /* the above doesn't seem to work in Edge */
     height: 100%;
     overflow-y: auto;
+    flex: 1;
 
     pre {
       white-space: pre-wrap;
