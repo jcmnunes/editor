@@ -34,9 +34,11 @@ export const Editor = forwardRef<any, Props>(({ defaultValue, isReadonly, onChan
 
   const [, forceUpdate] = useState({});
 
-  useEffectOnce(() => {
-    const state = EditorState.create<Schema>({
-      doc: parser.parse(defaultValue || ''),
+  const isFirstRender = useRef(true);
+
+  const createState = useCallback(value => {
+    return EditorState.create<Schema>({
+      doc: parser.parse(value || ''),
       schema,
       plugins: [
         inputRules({ rules: buildInputRules(schema) }),
@@ -50,6 +52,10 @@ export const Editor = forwardRef<any, Props>(({ defaultValue, isReadonly, onChan
         gapCursor(),
       ],
     });
+  }, []);
+
+  useEffectOnce(() => {
+    const state = createState(defaultValue);
 
     const view = new EditorView(editorRef.current, {
       state,
@@ -93,12 +99,22 @@ export const Editor = forwardRef<any, Props>(({ defaultValue, isReadonly, onChan
     };
   });
 
+  // Update the editor from outside
   useEffect(() => {
+    if (isFirstRender.current) {
+      isFirstRender.current = false;
+
+      return;
+    }
+
+    const state = createState(defaultValue);
+
     viewRef.current?.update({
       ...viewRef.current?.props,
+      state,
       editable: () => !isReadonly,
     });
-  }, [isReadonly]);
+  }, [createState, defaultValue, isReadonly]);
 
   useImperativeHandle(ref, () => ({
     get view() {

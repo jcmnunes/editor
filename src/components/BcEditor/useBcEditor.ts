@@ -1,16 +1,14 @@
 import React, { useCallback, useEffect, useState } from 'react';
-import { EditorView } from 'prosemirror-view';
 import useLocalStorage from 'react-use/lib/useLocalStorage';
 import { defaultValue } from './defaultValue';
+import { EditorRef } from '../../lib';
 
 export const useBcEditor = () => {
   const [isReadonly, setIsReadonly] = useState(false);
 
-  const [editorKey, setEditorKey] = useState(Date.now());
-
   const [savedValue, setSavedValue] = useLocalStorage('bcEditor', defaultValue);
 
-  const editorRef = React.useRef<{ view: EditorView; value: string }>();
+  const editorRef = React.useRef<EditorRef>();
 
   useEffect(() => {
     if (!isReadonly) {
@@ -42,8 +40,6 @@ export const useBcEditor = () => {
 
     setSavedValue(savedValue);
 
-    setEditorKey(Date.now());
-
     window.onbeforeunload = null;
   }, [savedValue, setSavedValue]);
 
@@ -57,16 +53,12 @@ export const useBcEditor = () => {
 
   const onResetValue = useCallback(() => {
     setSavedValue(defaultValue);
-
-    setEditorKey(Date.now());
   }, [setSavedValue]);
 
   return {
     state: {
       isReadonly,
       setIsReadonly,
-      editorKey,
-      setEditorKey,
       savedValue,
       setSavedValue,
     },
