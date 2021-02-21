@@ -53,6 +53,7 @@ export const BcEditor: React.FC<MarginProps> = () => {
 
       <EditorWrapper mt="16">
         <Editor
+          key={state.editorKey}
           ref={refs.editorRef}
           defaultValue={state.savedValue}
           isReadonly={state.isReadonly}

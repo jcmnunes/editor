@@ -57,10 +57,8 @@ export const Editor = forwardRef<EditorRef, Props>(
     }, []);
 
     useEffectOnce(() => {
-      const state = createState(defaultValue);
-
       const view = new EditorView(editorRef.current, {
-        state,
+        state: createState(defaultValue),
         editable: () => !isReadonly,
         dispatchTransaction: transaction => {
           if (viewRef.current) {
@@ -101,7 +99,6 @@ export const Editor = forwardRef<EditorRef, Props>(
       };
     });
 
-    // Update the editor from outside
     useEffect(() => {
       if (isFirstRender.current) {
         isFirstRender.current = false;
@@ -109,14 +106,11 @@ export const Editor = forwardRef<EditorRef, Props>(
         return;
       }
 
-      const state = createState(defaultValue);
-
       viewRef.current?.update({
         ...viewRef.current?.props,
-        state,
         editable: () => !isReadonly,
       });
-    }, [createState, defaultValue, isReadonly]);
+    }, [isReadonly]);
 
     useImperativeHandle(ref, () => ({
       get view() {
