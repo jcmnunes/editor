@@ -35,7 +35,15 @@ The Editor is available as an npm package:
 $ npm i @binarycapsule/editor
 \`\`\`
 
-> Make sure all peer dependencies are installed
+Install peer dependencies:
+
+\`\`\`
+$ npm i markdown-it prosemirror-commands prosemirror-dropcursor prosemirror-gapcursor prosemirror-history prosemirror-inputrules prosemirror-keymap prosemirror-markdown prosemirror-model prosemirror-schema-list prosemirror-state prosemirror-view
+\`\`\`
+
+\`\`\`
+$ npm i -D @types/markdown-it @types/prosemirror-commands @types/prosemirror-dev-tools @types/prosemirror-dropcursor @types/prosemirror-gapcursor @types/prosemirror-history @types/prosemirror-inputrules @types/prosemirror-keymap @types/prosemirror-markdown @types/prosemirror-model @types/prosemirror-schema-list @types/prosemirror-state @types/prosemirror-view
+\`\`\`
 
 ### Usage
 

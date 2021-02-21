@@ -71,24 +71,26 @@ export const Editor = forwardRef<any, Props>(({ defaultValue, isReadonly, onChan
 
     viewRef.current = view;
 
-    document.body.addEventListener(
-      'click',
-      evt => {
-        if (evt && evt.target && (evt.target as Element).classList.contains('editor-checkbox')) {
-          const { tr } = view.state;
-          const { top, left } = (evt.target as Element).getBoundingClientRect();
-          const result = view.posAtCoords({ top, left });
+    const handleEditorClick = (evt: MouseEvent) => {
+      if (evt && evt.target && (evt.target as Element).classList.contains('editor-checkbox')) {
+        const { tr } = view.state;
+        const { top, left } = (evt.target as Element).getBoundingClientRect();
+        const result = view.posAtCoords({ top, left });
 
-          if (result) {
-            const transaction = tr.setNodeMarkup(result.inside, undefined, {
-              checked: (evt.target as any).checked,
-            });
-            view.dispatch(transaction);
-          }
+        if (result) {
+          const transaction = tr.setNodeMarkup(result.inside, undefined, {
+            checked: (evt.target as any).checked,
+          });
+          view.dispatch(transaction);
         }
-      },
-      true,
-    );
+      }
+    };
+
+    document.body.addEventListener('click', handleEditorClick, true);
+
+    return () => {
+      document.body.removeEventListener('click', handleEditorClick, true);
+    };
   });
 
   useEffect(() => {
