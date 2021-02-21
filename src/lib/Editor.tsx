@@ -20,6 +20,7 @@ import { StyledEditor } from './Editor.styles';
 import { SelectionToolbar } from './SelectionToolbar/SelectionToolbar';
 import { paste } from './paste';
 import { click } from './click';
+import { EditorRef } from './types';
 
 interface Props {
   defaultValue?: string;
@@ -27,114 +28,116 @@ interface Props {
   onChange?(val: string): void;
 }
 
-export const Editor = forwardRef<any, Props>(({ defaultValue, isReadonly, onChange }, ref) => {
-  const viewRef = useRef<EditorView>();
+export const Editor = forwardRef<EditorRef, Props>(
+  ({ defaultValue, isReadonly, onChange }, ref) => {
+    const viewRef = useRef<EditorView>();
 
-  const editorRef = useRef<HTMLDivElement>(null!);
+    const editorRef = useRef<HTMLDivElement>(null!);
 
-  const [, forceUpdate] = useState({});
+    const [, forceUpdate] = useState({});
 
-  const isFirstRender = useRef(true);
+    const isFirstRender = useRef(true);
 
-  const createState = useCallback(value => {
-    return EditorState.create<Schema>({
-      doc: parser.parse(value || ''),
-      schema,
-      plugins: [
-        inputRules({ rules: buildInputRules(schema) }),
-        history(),
-        keymap(buildKeymap(schema)),
-        keymap(buildKeymapCheckbox(schema)),
-        keymap(baseKeymap),
-        paste(schema),
-        click(schema),
-        dropCursor(),
-        gapCursor(),
-      ],
-    });
-  }, []);
+    const createState = useCallback(value => {
+      return EditorState.create<Schema>({
+        doc: parser.parse(value || ''),
+        schema,
+        plugins: [
+          inputRules({ rules: buildInputRules(schema) }),
+          history(),
+          keymap(buildKeymap(schema)),
+          keymap(buildKeymapCheckbox(schema)),
+          keymap(baseKeymap),
+          paste(schema),
+          click(schema),
+          dropCursor(),
+          gapCursor(),
+        ],
+      });
+    }, []);
 
-  useEffectOnce(() => {
-    const state = createState(defaultValue);
+    useEffectOnce(() => {
+      const state = createState(defaultValue);
 
-    const view = new EditorView(editorRef.current, {
-      state,
-      editable: () => !isReadonly,
-      dispatchTransaction: transaction => {
-        if (viewRef.current) {
-          const { state, transactions } = viewRef.current.state.applyTransaction(transaction);
+      const view = new EditorView(editorRef.current, {
+        state,
+        editable: () => !isReadonly,
+        dispatchTransaction: transaction => {
+          if (viewRef.current) {
+            const { state, transactions } = viewRef.current.state.applyTransaction(transaction);
 
-          viewRef.current?.updateState(state);
+            viewRef.current?.updateState(state);
 
-          if (transactions.some(tr => tr.docChanged) && onChange) {
-            onChange(getValue());
+            if (transactions.some(tr => tr.docChanged) && onChange) {
+              onChange(getValue());
+            }
+          }
+
+          forceUpdate({});
+        },
+      });
+
+      viewRef.current = view;
+
+      const handleEditorClick = (evt: MouseEvent) => {
+        if (evt && evt.target && (evt.target as Element).classList.contains('editor-checkbox')) {
+          const { tr } = view.state;
+          const { top, left } = (evt.target as Element).getBoundingClientRect();
+          const result = view.posAtCoords({ top, left });
+
+          if (result) {
+            const transaction = tr.setNodeMarkup(result.inside, undefined, {
+              checked: (evt.target as any).checked,
+            });
+            view.dispatch(transaction);
           }
         }
+      };
 
-        forceUpdate({});
-      },
+      document.body.addEventListener('click', handleEditorClick, true);
+
+      return () => {
+        document.body.removeEventListener('click', handleEditorClick, true);
+      };
     });
 
-    viewRef.current = view;
+    // Update the editor from outside
+    useEffect(() => {
+      if (isFirstRender.current) {
+        isFirstRender.current = false;
 
-    const handleEditorClick = (evt: MouseEvent) => {
-      if (evt && evt.target && (evt.target as Element).classList.contains('editor-checkbox')) {
-        const { tr } = view.state;
-        const { top, left } = (evt.target as Element).getBoundingClientRect();
-        const result = view.posAtCoords({ top, left });
-
-        if (result) {
-          const transaction = tr.setNodeMarkup(result.inside, undefined, {
-            checked: (evt.target as any).checked,
-          });
-          view.dispatch(transaction);
-        }
+        return;
       }
-    };
 
-    document.body.addEventListener('click', handleEditorClick, true);
+      const state = createState(defaultValue);
 
-    return () => {
-      document.body.removeEventListener('click', handleEditorClick, true);
-    };
-  });
+      viewRef.current?.update({
+        ...viewRef.current?.props,
+        state,
+        editable: () => !isReadonly,
+      });
+    }, [createState, defaultValue, isReadonly]);
 
-  // Update the editor from outside
-  useEffect(() => {
-    if (isFirstRender.current) {
-      isFirstRender.current = false;
+    useImperativeHandle(ref, () => ({
+      get view() {
+        return viewRef.current;
+      },
 
-      return;
-    }
+      get value() {
+        return getValue();
+      },
+    }));
 
-    const state = createState(defaultValue);
+    const getValue = useCallback(() => {
+      return viewRef.current?.state.doc ? serializer.serialize(viewRef.current.state.doc) : '';
+    }, []);
 
-    viewRef.current?.update({
-      ...viewRef.current?.props,
-      state,
-      editable: () => !isReadonly,
-    });
-  }, [createState, defaultValue, isReadonly]);
+    return (
+      <>
+        {!isReadonly && <SelectionToolbar view={viewRef.current} />}
 
-  useImperativeHandle(ref, () => ({
-    get view() {
-      return viewRef.current;
-    },
-
-    get value() {
-      return getValue();
-    },
-  }));
-
-  const getValue = useCallback(() => {
-    return viewRef.current?.state.doc ? serializer.serialize(viewRef.current.state.doc) : '';
-  }, []);
-
-  return (
-    <>
-      {!isReadonly && <SelectionToolbar view={viewRef.current} />}
-
-      <StyledEditor ref={editorRef} />
-    </>
-  );
-});
+        <StyledEditor ref={editorRef} />
+      </>
+    );
+  },
+);

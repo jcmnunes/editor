@@ -8,11 +8,11 @@ export const useBcEditor = () => {
 
   const [savedValue, setSavedValue] = useLocalStorage('bcEditor', defaultValue);
 
-  const editorRef = React.useRef<EditorRef>();
+  const editorRef = React.useRef<EditorRef>(null);
 
   useEffect(() => {
-    if (!isReadonly) {
-      editorRef.current?.view.focus();
+    if (!isReadonly && editorRef.current?.view) {
+      editorRef.current.view.focus();
     }
   }, [isReadonly]);
 

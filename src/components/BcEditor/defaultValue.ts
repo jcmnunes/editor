@@ -47,7 +47,7 @@ As a minimal implementation, pass a ref to the Editor. The editor's value can be
 
 \`\`\`
 export const App = () => {
-  const editorRef = React.useRef<EditorRef>();
+  const editorRef = useRef<EditorRef>(null);
 
   return (
     <div>
