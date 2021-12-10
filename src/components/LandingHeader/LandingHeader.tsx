@@ -1,52 +1,47 @@
 import React from 'react';
-import { Box, Button, Text } from '@binarycapsule/ui-capsules';
+import { Button, Flex, Text } from '@binarycapsule/ui-capsules';
 
-export const LandingHeader: React.FC = () => {
+export const LandingHeader = () => {
   return (
-    <Box display="flex" flexDirection="column" alignItems="center" py="48">
+    <Flex direction="column" align="center" css={{ py: '$7' }}>
       <Text
-        fontWeight={600}
-        color="blue.600"
-        style={{
+        css={{
           fontFamily: 'Lenox, sans-serif',
           textTransform: 'uppercase',
           fontSize: '50px',
           lineHeight: '50px',
+          fontWeight: 600,
+          color: '$primary500',
         }}
       >
         BC Editor
       </Text>
 
-      <Text fontSize="small" color="neutral.500">
+      <Text size={1} css={{ color: '$neutral500' }}>
         Rich text editor powered by Prosemirror
       </Text>
 
-      <Box display="flex">
-        <Text fontSize="small" color="neutral.500" mr="4">
-          by
-        </Text>
-
+      <Flex>
         <Text
-          color="neutral.500"
-          style={{
+          css={{
+            color: '$neutral500',
             fontFamily: 'Lenox, sans-serif',
           }}
         >
           BinaryCapsule
         </Text>
-      </Box>
+      </Flex>
 
       <Button
         as="a"
         href="https://github.com/jcmnunes/editor"
         leftIcon="github"
-        variant="outline"
-        variantColor="neutral"
+        variant="secondary"
         iconVariant="outline"
-        mt="24"
+        css={{ mt: '$5' }}
       >
         GitHub
       </Button>
-    </Box>
+    </Flex>
   );
 };

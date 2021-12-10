@@ -1,5 +1,4 @@
 import React, { useCallback, useMemo, useState } from 'react';
-import styled from '@emotion/styled';
 import { ToolbarButton } from './ToolbarButton';
 import { ToolbarInput } from './ToolbarInput';
 import { Separator } from './Separator';
@@ -8,12 +7,13 @@ import { windowOpener } from '../../utils/windowOpener';
 import { EditorView } from 'prosemirror-view';
 import { isUrl } from '../../utils/isUrl';
 import { TextSelection } from 'prosemirror-state';
+import { styled } from '@binarycapsule/ui-capsules';
 
-export const Wrapper = styled.div`
-  display: flex;
-  align-items: center;
-  padding: 5px 8px;
-`;
+export const Wrapper = styled('div', {
+  display: 'flex',
+  alignItems: 'center',
+  padding: '5px 8px',
+});
 
 interface LinkToolbarProps {
   view: EditorView;
@@ -70,7 +70,6 @@ export const LinkToolbar: React.FC<LinkToolbarProps> = ({ view, mark, from, to }
       <ToolbarInput
         value={linkUrl}
         onChange={e => setLinkUrl(e.target.value)}
-        width={240}
         autoFocus={href === ''}
         onKeyDown={e => {
           if (e.key === 'Enter') {

@@ -38,7 +38,7 @@ $ npm i @binarycapsule/editor
 Peer dependencies:
 
 \`\`\`
-$ npm i react react-dom @emotion/react @emotion/styled
+$ npm i react react-dom @binarycapsule/ui-capsules
 \`\`\`
 
 ### Usage

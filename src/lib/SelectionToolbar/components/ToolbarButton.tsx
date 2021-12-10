@@ -1,30 +1,38 @@
 import React from 'react';
-import styled from '@emotion/styled';
+import { styled } from '@binarycapsule/ui-capsules';
 import { Icon } from '../../icons/Icon';
 import { IconType } from '../../icons/icons';
 
-export const StyledButton = styled.button<{ isActive?: boolean }>`
-  display: inline-flex;
-  justify-content: center;
-  align-items: center;
-  width: 28px;
-  height: 28px;
-  margin-left: 4px;
-  border: none;
-  background: ${({ isActive, theme }) => (isActive ? theme.colors.neutral['600'] : 'none')};
-  transition: opacity 100ms ease-in-out 0s;
-  padding: 0;
-  border-radius: 2px;
-  color: ${({ theme }) => theme.colors.neutral['100']};
+export const StyledButton = styled('button', {
+  display: 'inline-flex',
+  justifyContent: 'center',
+  alignItems: 'center',
+  width: 28,
+  height: 28,
+  marginLeft: 4,
+  border: 'none',
+  background: 'none',
+  transition: 'opacity 100ms ease-in-out 0s',
+  padding: 0,
+  borderRadius: '2px',
+  color: '$neutral100',
 
-  &:first-of-type {
-    margin-left: 0;
-  }
+  '&:first-of-type': {
+    marginLeft: 0,
+  },
 
-  &:focus {
-    outline: none;
+  '&:focus': {
+    outline: 'none',
+  },
+
+  variants: {
+    isActive: {
+      true: {
+        background: '$neutral600',
+      }
+    }
   }
-`;
+});
 
 interface ToolbarButtonProps extends React.ComponentPropsWithoutRef<'button'> {
   icon: IconType;
