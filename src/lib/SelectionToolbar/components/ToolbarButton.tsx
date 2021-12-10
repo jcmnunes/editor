@@ -29,9 +29,9 @@ export const StyledButton = styled('button', {
     isActive: {
       true: {
         background: '$neutral600',
-      }
-    }
-  }
+      },
+    },
+  },
 });
 
 interface ToolbarButtonProps extends React.ComponentPropsWithoutRef<'button'> {

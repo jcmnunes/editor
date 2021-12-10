@@ -1,4 +1,3 @@
-import React from 'react';
 import { styled } from '@binarycapsule/ui-capsules';
 
 export const Separator = styled('div', {
@@ -7,4 +6,3 @@ export const Separator = styled('div', {
   display: 'inline-block',
   margin: '0 2px 0 7px',
 });
-

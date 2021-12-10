@@ -9,7 +9,7 @@ export const StyledBcEditor = styled('section', {
     width: 480,
     margin: 0,
     height: '100%',
-  }
+  },
 });
 
 export const EditorWrapper = styled(Box, {
