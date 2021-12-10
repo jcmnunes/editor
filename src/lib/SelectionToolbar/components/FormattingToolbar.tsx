@@ -7,13 +7,13 @@ import { isNodeActive } from '../../utils/isNodeActive';
 import { toggleWrap } from '../../utils/toggleWrap';
 import { toggleList } from '../../utils/toggleList';
 import { EditorView } from 'prosemirror-view';
-import styled from '@emotion/styled';
+import { styled } from '@binarycapsule/ui-capsules';
 
-export const Wrapper = styled.div`
-  display: flex;
-  align-items: center;
-  padding: 5px 8px;
-`;
+export const Wrapper = styled('div', {
+  display: 'flex',
+  alignItems: 'center',
+  padding: '5px 8px',
+});
 
 interface Props {
   view: EditorView;

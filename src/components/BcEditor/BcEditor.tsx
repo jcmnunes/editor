@@ -1,31 +1,25 @@
 import React from 'react';
-import { Box, Button, IconButton, Tooltip } from '@binarycapsule/ui-capsules';
-import { MarginProps } from '@binarycapsule/ui-capsules/dist/styledProps';
+import { Box, Button, Flex, IconButton, Tooltip } from '@binarycapsule/ui-capsules';
 import { Editor } from '../../lib';
 import { EditorWrapper, StyledBcEditor } from './BcEditor.styles';
 import { useBcEditor } from './useBcEditor';
 
-export const BcEditor: React.FC<MarginProps> = () => {
+export const BcEditor = () => {
   const { state, refs, handlers } = useBcEditor();
 
   return (
     <StyledBcEditor>
-      <Box display="flex" justifyContent="space-between">
+      <Flex justify="between">
         {!state.isReadonly ? (
           <Box>
-            <Tooltip content="Log the current editor's value and the EditorView object">
-              <Button onClick={handlers.onDebug} leftIcon="lightning" mr="12">
+            <Tooltip label="Log the current editor's value and the EditorView object">
+              <Button onClick={handlers.onDebug} leftIcon="lightning" css={{ mr: '$3' }}>
                 Debug
               </Button>
             </Tooltip>
 
-            <Tooltip content="Reset the editor value">
-              <IconButton
-                icon="refresh"
-                variant="outline"
-                variantColor="primary"
-                onClick={handlers.onResetValue}
-              />
+            <Tooltip label="Reset the editor value">
+              <IconButton icon="refresh" variant="secondary" onClick={handlers.onResetValue} />
             </Tooltip>
           </Box>
         ) : (
@@ -34,24 +28,24 @@ export const BcEditor: React.FC<MarginProps> = () => {
 
         <Box>
           {state.isReadonly ? (
-            <Button onClick={() => state.setIsReadonly(false)} variant="outline" leftIcon="pencil">
+            <Button onClick={() => state.setIsReadonly(false)} variant="primary" leftIcon="pencil">
               Edit
             </Button>
           ) : (
             <>
-              <Button onClick={handlers.onCancel} variant="ghost" mr="8">
+              <Button onClick={handlers.onCancel} variant="ghostGray" css={{ mr: '$2' }}>
                 Cancel
               </Button>
 
-              <Button onClick={handlers.handleSave} variant="outline">
+              <Button onClick={handlers.handleSave} variant="primary">
                 Save
               </Button>
             </>
           )}
         </Box>
-      </Box>
+      </Flex>
 
-      <EditorWrapper mt="16">
+      <EditorWrapper css={{ mt: '$4' }}>
         <Editor
           key={state.editorKey}
           ref={refs.editorRef}

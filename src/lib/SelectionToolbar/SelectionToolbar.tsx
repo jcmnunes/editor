@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { EditorView } from 'prosemirror-view';
-import styled from '@emotion/styled';
+import { styled } from '@binarycapsule/ui-capsules';
 import { usePosition } from './hooks/usePosition';
 import { isMarkActive } from '../utils/isMarkActive';
 import { isNodeActive } from '../utils/isNodeActive';
@@ -9,39 +9,38 @@ import { FormattingToolbar } from './components/FormattingToolbar';
 import { LinkToolbar } from './components/LinkToolbar';
 import { getMarkRange } from '../utils/getMarkRange';
 
-export const Wrapper = styled.div<{
-  active?: boolean;
-  offset: number;
-}>`
-  position: absolute;
-  height: 38px;
-  opacity: 0;
-  border-radius: 4px;
-  z-index: ${props => props.theme.zIndices.larger};
-  background-color: ${props => props.theme.colors.neutral['800']};
-  box-sizing: border-box;
-  pointer-events: none;
-  white-space: nowrap;
-  box-shadow: 0 3px 6px hsla(0, 0%, 0%, 0.15), 0 2px 4px hsla(0, 0%, 0%, 0.12);
+export const Wrapper = styled('div', {
+  position: 'absolute',
+  height: 38,
+  opacity: 0,
+  borderRadius: 4,
+  zIndex: '$splash',
+  backgroundColor: '$neutral700',
+  boxSizing: 'border-box',
+  pointerEvents: 'none',
+  whiteSpace: 'nowrap',
+  boxShadow: '0 3px 6px hsla(0, 0%, 0%, 0.15), 0 2px 4px hsla(0, 0%, 0%, 0.12)',
 
-  ${({ active }) =>
-    active &&
-    `
-    pointer-events: all;
-    opacity: 1;
-  `};
+  '@media print': {
+    display: 'none',
+  },
 
-  @media print {
-    display: none;
-  }
-`;
+  variants: {
+    active: {
+      true: {
+        pointerEvents: 'all',
+        opacity: 1,
+      },
+    },
+  },
+});
 
 interface Props {
   view?: EditorView;
 }
 
 export const SelectionToolbar: React.FC<Props> = ({ view }) => {
-  const [ref, { left, top, offset }] = usePosition({ view, isSelectingText: false, active: true });
+  const [ref, { left, top }] = usePosition({ view, isSelectingText: false, active: true });
 
   if (!view) {
     return null;
@@ -68,7 +67,6 @@ export const SelectionToolbar: React.FC<Props> = ({ view }) => {
   return ReactDOM.createPortal(
     <Wrapper
       ref={ref as any}
-      offset={offset}
       active={!selection.empty}
       style={{
         top: `${top}px`,
