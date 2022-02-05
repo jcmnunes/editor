@@ -1,5 +1,5 @@
 import React from 'react';
-import { styled } from '@binarycapsule/ui-capsules';
+import { darkTheme, styled } from '@binarycapsule/ui-capsules';
 import { Icon } from '../../icons/Icon';
 import { IconType } from '../../icons/icons';
 
@@ -17,6 +17,10 @@ export const StyledButton = styled('button', {
   borderRadius: '2px',
   color: '$neutral100',
 
+  [`.${darkTheme} &`]: {
+    color: '$neutral700',
+  },
+
   '&:first-of-type': {
     marginLeft: 0,
   },
@@ -29,6 +33,10 @@ export const StyledButton = styled('button', {
     isActive: {
       true: {
         background: '$neutral600',
+
+        [`.${darkTheme} &`]: {
+          background: '$neutral200',
+        },
       },
     },
   },

@@ -29,7 +29,7 @@
     "react-use": "^17.1.0"
   },
   "devDependencies": {
-    "@binarycapsule/ui-capsules": "^5.0.2",
+    "@binarycapsule/ui-capsules": "^6.3.0",
     "@stitches/react": "^1.2.6",
     "@testing-library/jest-dom": "^5.11.8",
     "@testing-library/react": "^11.2.3",
@@ -63,9 +63,9 @@
     "web-vitals": "^0.2.4"
   },
   "peerDependencies": {
-    "@binarycapsule/ui-capsules": "^5.0.2",
-    "react": "^17.0.1",
-    "react-dom": "^17.0.1"
+    "@binarycapsule/ui-capsules": ">=6.3",
+    "react": ">=16.8",
+    "react-dom": ">=16.8"
   },
   "scripts": {
     "start": "react-scripts start",
