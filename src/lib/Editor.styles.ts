@@ -10,9 +10,9 @@ export const StyledEditor = styled('div', {
   color: '$neutral700',
   background: '$bg',
   fontFamily: '$inter',
-  fontSize: '$2',
+  fontSize: '$sm',
   fontWeight: 400,
-  lineHeight: '$2',
+  lineHeight: '$sm',
   width: '100%',
   height: '100%',
   display: 'flex',
@@ -55,7 +55,7 @@ export const StyledEditor = styled('div', {
         overflowX: 'auto',
         padding: '0.5em 0.65em',
         lineHeight: '1.6em',
-        fontSize: '$1',
+        fontSize: '$xs',
       },
     },
 
@@ -64,7 +64,7 @@ export const StyledEditor = styled('div', {
       borderRadius: '3px',
       border: '1px solid $neutral200',
       background: '$neutral50',
-      fontSize: '$1',
+      fontSize: '$sm',
     },
 
     'p, pre, ul, ol': {
@@ -113,19 +113,19 @@ export const StyledEditor = styled('div', {
     },
 
     h1: {
-      fontSize: '$6',
+      fontSize: '$2xl',
     },
 
     h2: {
-      fontSize: '$5',
+      fontSize: '$xl',
     },
 
     h3: {
-      fontSize: '$4',
+      fontSize: '$lg',
     },
 
     h4: {
-      fontSize: '$3',
+      fontSize: '$md',
     },
 
     'ul.checkbox_list': {
@@ -280,6 +280,6 @@ export const StyledEditor = styled('div', {
 
   '.ProseMirror p': {
     marginBottom: '1em',
-    lineHeight: '$2',
+    lineHeight: '$sm',
   },
 });

@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { EditorView } from 'prosemirror-view';
-import { styled } from '@binarycapsule/ui-capsules';
+import { darkTheme, styled } from '@binarycapsule/ui-capsules';
 import { usePosition } from './hooks/usePosition';
 import { isMarkActive } from '../utils/isMarkActive';
 import { isNodeActive } from '../utils/isNodeActive';
@@ -19,7 +19,11 @@ export const Wrapper = styled('div', {
   boxSizing: 'border-box',
   pointerEvents: 'none',
   whiteSpace: 'nowrap',
-  boxShadow: '0 3px 6px hsla(0, 0%, 0%, 0.15), 0 2px 4px hsla(0, 0%, 0%, 0.12)',
+  boxShadow: '$300',
+
+  [`.${darkTheme} &`]: {
+    backgroundColor: '$neutral100',
+  },
 
   '@media print': {
     display: 'none',
