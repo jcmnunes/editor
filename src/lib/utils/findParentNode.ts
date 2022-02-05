@@ -1,3 +1,4 @@
+// eslint-disable-next-line consistent-return
 export const findParentNodeClosestToPos = ($pos: any, predicate: any) => {
   for (let i = $pos.depth; i > 0; i--) {
     const node = $pos.node(i);
@@ -13,5 +14,7 @@ export const findParentNodeClosestToPos = ($pos: any, predicate: any) => {
   }
 };
 
-export const findParentNode = (predicate: any) => ({ $from }: any) =>
-  findParentNodeClosestToPos($from, predicate);
+export const findParentNode =
+  (predicate: any) =>
+  ({ $from }: any) =>
+    findParentNodeClosestToPos($from, predicate);

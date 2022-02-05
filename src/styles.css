@@ -2,9 +2,3 @@
   font-family: 'Lenox';
   src: local('Lenox'), url(./fonts/Lenox.otf) format('opentype');
 }
-
-body {
-  background: #f5f7fa;
-  width: 100%;
-  height: 100%;
-}

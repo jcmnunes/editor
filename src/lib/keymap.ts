@@ -91,14 +91,15 @@ export function buildKeymap(schema: Schema) {
   }
 
   if ((type = schema.nodes.hard_break)) {
-    let br = type,
-      cmd = chainCommands(exitCode, (state, dispatch) => {
-        if (dispatch) {
-          dispatch(state.tr.replaceSelectionWith(br.create()).scrollIntoView());
-        }
+    const br = type;
 
-        return true;
-      });
+    const cmd = chainCommands(exitCode, (state, dispatch) => {
+      if (dispatch) {
+        dispatch(state.tr.replaceSelectionWith(br.create()).scrollIntoView());
+      }
+
+      return true;
+    });
 
     bind('Mod-Enter', cmd);
 
@@ -127,7 +128,7 @@ export function buildKeymap(schema: Schema) {
     }
 
   if ((type = schema.nodes.horizontal_rule)) {
-    let hr = type;
+    const hr = type;
 
     bind('Mod-_', (state: any, dispatch: any) => {
       dispatch(state.tr.replaceSelectionWith(hr.create()).scrollIntoView());

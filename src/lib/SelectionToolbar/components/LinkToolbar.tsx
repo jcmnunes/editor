@@ -70,7 +70,6 @@ export const LinkToolbar: React.FC<LinkToolbarProps> = ({ view, mark, from, to }
       <ToolbarInput
         value={linkUrl}
         onChange={e => setLinkUrl(e.target.value)}
-        autoFocus={href === ''}
         onKeyDown={e => {
           if (e.key === 'Enter') {
             e.preventDefault();

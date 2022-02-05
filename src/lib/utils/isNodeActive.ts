@@ -18,6 +18,8 @@ export const findSelectedNodeOfType = (nodeType: any, selection: any) => {
       return { node, pos: $from.pos, depth: $from.depth };
     }
   }
+
+  return null;
 };
 
 export const isNodeActive = (

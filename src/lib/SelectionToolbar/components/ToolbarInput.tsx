@@ -28,3 +28,5 @@ interface ToolbarInputProps extends React.ComponentPropsWithRef<'input'> {}
 export const ToolbarInput = forwardRef<HTMLInputElement, ToolbarInputProps>((props, ref) => {
   return <StyledInput ref={ref} {...props} />;
 });
+
+ToolbarInput.displayName = 'ToolbarInput';

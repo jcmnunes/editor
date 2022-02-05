@@ -28,10 +28,12 @@ interface Props {
   onChange?(val: string): void;
 }
 
+// eslint-disable-next-line react/display-name
 export const Editor = forwardRef<EditorRef, Props>(
   ({ defaultValue, isReadonly, onChange }, ref) => {
     const viewRef = useRef<EditorView>();
 
+    // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
     const editorRef = useRef<HTMLDivElement>(null!);
 
     const [, forceUpdate] = useState({});
