@@ -274,9 +274,10 @@ export const StyledEditor = styled('div', {
     marginBottom: '23px',
   },
 
-  '.ProseMirror p:first-child, .ProseMirror h1:first-child, .ProseMirror h2:first-child, .ProseMirror h3:first-child, .ProseMirror h4:first-child, .ProseMirror h5:first-child, .ProseMirror h6:first-child': {
-    marginTop: 10,
-  },
+  '.ProseMirror p:first-child, .ProseMirror h1:first-child, .ProseMirror h2:first-child, .ProseMirror h3:first-child, .ProseMirror h4:first-child, .ProseMirror h5:first-child, .ProseMirror h6:first-child':
+    {
+      marginTop: 10,
+    },
 
   '.ProseMirror p': {
     marginBottom: '1em',

@@ -69,6 +69,7 @@ export const serializer = new MarkdownSerializer(
     },
 
     text(state, node) {
+      // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
       state.text(node.text!);
     },
 
