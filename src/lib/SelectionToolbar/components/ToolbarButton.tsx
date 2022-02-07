@@ -35,7 +35,7 @@ export const StyledButton = styled('button', {
         background: '$neutral600',
 
         [`.${darkTheme} &`]: {
-          background: '$neutral200',
+          background: '$neutral100',
         },
       },
     },
