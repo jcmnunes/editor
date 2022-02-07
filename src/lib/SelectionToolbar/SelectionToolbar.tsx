@@ -22,7 +22,7 @@ export const Wrapper = styled('div', {
   boxShadow: '$300',
 
   [`.${darkTheme} &`]: {
-    backgroundColor: '$neutral100',
+    backgroundColor: '$neutral200',
   },
 
   '@media print': {
