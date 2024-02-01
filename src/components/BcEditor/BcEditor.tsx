@@ -13,7 +13,7 @@ export const BcEditor = () => {
         {!state.isReadonly ? (
           <Box>
             <Tooltip label="Log the current editor's value and the EditorView object">
-              <Button onClick={handlers.onDebug} leftIcon="lightning" css={{ mr: '$3' }}>
+              <Button onClick={handlers.onDebug} leftIcon="lightning" style={{ marginRight: 12 }}>
                 Debug
               </Button>
             </Tooltip>
@@ -33,7 +33,7 @@ export const BcEditor = () => {
             </Button>
           ) : (
             <>
-              <Button onClick={handlers.onCancel} variant="ghostGray" css={{ mr: '$2' }}>
+              <Button onClick={handlers.onCancel} variant="ghostGray" style={{ marginRight: 8 }}>
                 Cancel
               </Button>
 
@@ -45,7 +45,7 @@ export const BcEditor = () => {
         </Box>
       </Flex>
 
-      <EditorWrapper css={{ mt: '$4' }}>
+      <EditorWrapper style={{ marginTop: 16 }}>
         <Editor
           key={state.editorKey}
           ref={refs.editorRef}

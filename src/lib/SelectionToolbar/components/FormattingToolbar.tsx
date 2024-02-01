@@ -1,4 +1,5 @@
 import React from 'react';
+import styled from 'styled-components';
 import { ToolbarButton } from './ToolbarButton';
 import { isMarkActive } from '../../utils/isMarkActive';
 import { setBlockType, toggleMark } from 'prosemirror-commands';
@@ -7,9 +8,8 @@ import { isNodeActive } from '../../utils/isNodeActive';
 import { toggleWrap } from '../../utils/toggleWrap';
 import { toggleList } from '../../utils/toggleList';
 import { EditorView } from 'prosemirror-view';
-import { styled } from '@binarycapsule/ui-capsules';
 
-export const Wrapper = styled('div', {
+export const Wrapper = styled.div({
   display: 'flex',
   alignItems: 'center',
   padding: '5px 8px',
@@ -19,7 +19,7 @@ interface Props {
   view: EditorView;
 }
 
-export const FormattingToolbar: React.FC<Props> = ({ view }) => {
+export const FormattingToolbar = ({ view }: Props) => {
   const { state, dispatch } = view;
 
   const {

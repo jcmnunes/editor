@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { EditorView } from 'prosemirror-view';
-import { darkTheme, styled } from '@binarycapsule/ui-capsules';
+import styled from 'styled-components';
 import { usePosition } from './hooks/usePosition';
 import { isMarkActive } from '../utils/isMarkActive';
 import { isNodeActive } from '../utils/isNodeActive';
@@ -9,35 +9,42 @@ import { FormattingToolbar } from './components/FormattingToolbar';
 import { LinkToolbar } from './components/LinkToolbar';
 import { getMarkRange } from '../utils/getMarkRange';
 
-export const Wrapper = styled('div', {
-  position: 'absolute',
-  height: 38,
-  opacity: 0,
-  borderRadius: 4,
-  zIndex: '$splash',
-  backgroundColor: '$neutral700',
-  boxSizing: 'border-box',
-  pointerEvents: 'none',
-  whiteSpace: 'nowrap',
-  boxShadow: '$300',
+interface WrapperProps {
+  $isActive: boolean;
+}
 
-  [`.${darkTheme} &`]: {
-    backgroundColor: '$neutral100',
-  },
+export const Wrapper = styled.div<WrapperProps>(
+  ({ theme }) => ({
+    position: 'absolute',
+    height: 38,
+    opacity: 0,
+    borderRadius: 4,
+    zIndex: theme.zIndices.splash,
+    backgroundColor: theme.colors.neutral700,
+    boxSizing: 'border-box',
+    pointerEvents: 'none',
+    whiteSpace: 'nowrap',
+    boxShadow: theme.shadows['300'],
 
-  '@media print': {
-    display: 'none',
-  },
+    '.darkTheme &': {
+      backgroundColor: theme.colors.neutral100,
+    },
 
-  variants: {
-    active: {
-      true: {
+    '@media print': {
+      display: 'none',
+    },
+  }),
+
+  ({ $isActive }) => {
+    if ($isActive) {
+      return {
         pointerEvents: 'all',
         opacity: 1,
-      },
-    },
+      };
+    }
+    return {};
   },
-});
+);
 
 interface Props {
   view?: EditorView;
@@ -71,7 +78,7 @@ export const SelectionToolbar: React.FC<Props> = ({ view }) => {
   return ReactDOM.createPortal(
     <Wrapper
       ref={ref as any}
-      active={!selection.empty}
+      $isActive={!selection.empty}
       style={{
         top: `${top}px`,
         left: `${left}px`,

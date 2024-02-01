@@ -1,4 +1,5 @@
 import React, { useCallback, useMemo, useState } from 'react';
+import styled from 'styled-components';
 import { ToolbarButton } from './ToolbarButton';
 import { ToolbarInput } from './ToolbarInput';
 import { Separator } from './Separator';
@@ -7,9 +8,8 @@ import { windowOpener } from '../../utils/windowOpener';
 import { EditorView } from 'prosemirror-view';
 import { isUrl } from '../../utils/isUrl';
 import { TextSelection } from 'prosemirror-state';
-import { styled } from '@binarycapsule/ui-capsules';
 
-export const Wrapper = styled('div', {
+export const Wrapper = styled.div({
   display: 'flex',
   alignItems: 'center',
   padding: '5px 8px',
@@ -22,7 +22,7 @@ interface LinkToolbarProps {
   to: number;
 }
 
-export const LinkToolbar: React.FC<LinkToolbarProps> = ({ view, mark, from, to }) => {
+export const LinkToolbar = ({ view, mark, from, to }: LinkToolbarProps) => {
   const [linkUrl, setLinkUrl] = useState(mark.attrs.href);
 
   const isLinkValid = useMemo(() => {

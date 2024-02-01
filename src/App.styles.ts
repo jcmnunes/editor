@@ -1,6 +1,6 @@
-import { styled } from '@binarycapsule/ui-capsules';
+import styled from 'styled-components';
 
-export const Main = styled('main', {
+export const Main = styled.main({
   display: 'flex',
   flexDirection: 'column',
   padding: '48px 0',
