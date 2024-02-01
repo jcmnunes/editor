@@ -3,53 +3,60 @@ import styled from 'styled-components';
 import { Icon } from '../../icons/Icon';
 import { IconType } from '../../icons/icons';
 
-export const StyledButton = styled.button(({ theme }) => ({
-  display: 'inline-flex',
-  justifyContent: 'center',
-  alignItems: 'center',
-  width: 28,
-  height: 28,
-  marginLeft: 4,
-  border: 'none',
-  background: 'none',
-  transition: 'opacity 100ms ease-in-out 0s',
-  padding: 0,
-  borderRadius: '2px',
-  color: theme.colors.neutral100,
+interface StyledButtonProps {
+  $isActive?: boolean;
+}
 
-  '.darkTheme &': {
-    color: theme.colors.neutral700,
-  },
+export const StyledButton = styled.button<StyledButtonProps>(
+  ({ theme }) => ({
+    display: 'inline-flex',
+    justifyContent: 'center',
+    alignItems: 'center',
+    width: 28,
+    height: 28,
+    marginLeft: 4,
+    border: 'none',
+    background: 'none',
+    transition: 'opacity 100ms ease-in-out 0s',
+    padding: 0,
+    borderRadius: '2px',
+    color: theme.colors.neutral100,
 
-  '&:first-of-type': {
-    marginLeft: 0,
-  },
+    '.darkTheme &': {
+      color: theme.colors.neutral700,
+    },
 
-  '&:focus': {
-    outline: 'none',
-  },
+    '&:first-of-type': {
+      marginLeft: 0,
+    },
 
-  variants: {
-    isActive: {
-      true: {
+    '&:focus': {
+      outline: 'none',
+    },
+  }),
+
+  ({ $isActive, theme }) => {
+    if ($isActive) {
+      return {
         background: theme.colors.neutral600,
 
         '.darkTheme &': {
           background: theme.colors.neutral100,
         },
-      },
-    },
+      };
+    }
+    return {};
   },
-}));
+);
 
 interface ToolbarButtonProps extends React.ComponentPropsWithoutRef<'button'> {
   icon: IconType;
   isActive?: boolean;
 }
 
-export const ToolbarButton = ({ icon, ...rest }: ToolbarButtonProps) => {
+export const ToolbarButton = ({ icon, isActive, ...rest }: ToolbarButtonProps) => {
   return (
-    <StyledButton type="button" {...rest}>
+    <StyledButton type="button" $isActive={isActive} {...rest}>
       <Icon icon={icon} size={18} />
     </StyledButton>
   );
