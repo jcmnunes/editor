@@ -2,6 +2,11 @@
 
 # BC Editor
 
+### 🚨 **Breakable toy - Do not use in real projects** 🚨
+**This library is a breakable toy. New versions will often contain breaking changes, even for non-major releases.**
+
+---
+
 BC Editor is a [Prosemirror](https://prosemirror.net/) based text editor with
 markdown shortcuts and serialization. It is highly inspired by:
 
@@ -23,8 +28,10 @@ npm i @binarycapsule/editor
 Peer dependencies:
 
 ```
-npm i react react-dom @binarycapsule/ui-capsules
+npm i react react-dom @binarycapsule/ui-capsules @stitches/react
 ```
+
+Note: this package is meant to be used inside a app already setup with the [ui-capsules](https://github.com/jcmnunes/ui-capsules) package.
 
 ## Usage
 
@@ -33,7 +40,7 @@ accessed through it:
 
 ```tsx
 export const App = () => {
-  const editorRef = React.useRef<{ view: EditorView; value: string }>();
+  const editorRef = React.useRef<EditorRef>(null);
 
   return (
     <div>

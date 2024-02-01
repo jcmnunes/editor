@@ -27,7 +27,7 @@ export const Wrapper = styled.div<WrapperProps>(
     boxShadow: theme.shadows['300'],
 
     '.darkTheme &': {
-      backgroundColor: theme.colors.neutral100,
+      backgroundColor: theme.colors.neutral200,
     },
 
     '@media print': {

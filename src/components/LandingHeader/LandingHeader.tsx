@@ -20,7 +20,7 @@ export const LandingHeader = () => {
         BC Editor
       </Text>
 
-      <Text size="sm" style={{ color: theme.colors.neutral500 }}>
+      <Text size="md" style={{ color: theme.colors.neutral500 }}>
         Rich text editor powered by Prosemirror
       </Text>
 
