@@ -1,8 +1,8 @@
-import { styled } from '@binarycapsule/ui-capsules';
+import styled from 'styled-components';
 
-export const Separator = styled('div', {
+export const Separator = styled.div(({ theme }) => ({
   height: 16,
-  borderLeft: '1px solid $neutral300',
+  borderLeft: `1px solid ${theme.colors.neutral300}`,
   display: 'inline-block',
   margin: '0 2px 0 7px',
-});
+}));

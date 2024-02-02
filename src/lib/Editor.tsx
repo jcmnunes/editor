@@ -1,4 +1,3 @@
-import '@binarycapsule/ui-capsules/assets/global.css';
 import * as React from 'react';
 import { forwardRef, useCallback, useEffect, useImperativeHandle, useRef, useState } from 'react';
 import useEffectOnce from 'react-use/lib/useEffectOnce';

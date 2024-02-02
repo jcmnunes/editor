@@ -7,6 +7,7 @@
   "main": "dist/index.js",
   "module": "dist/index.js",
   "typings": "dist/index.d.ts",
+  "type": "module",
   "files": [
     "dist",
     "src/lib",
@@ -29,10 +30,9 @@
     "react-use": "^17.3.2"
   },
   "devDependencies": {
-    "@binarycapsule/ui-capsules": "^6.3.1",
-    "@stitches/react": "^1.2.6",
+    "@binarycapsule/ui-capsules": "^7.0.4",
     "@types/markdown-it": "^12.2.3",
-    "@types/node": "^17.0.15",
+    "@types/node": "^18.19.12",
     "@types/prosemirror-commands": "^1.0.4",
     "@types/prosemirror-dropcursor": "^1.0.3",
     "@types/prosemirror-gapcursor": "^1.0.4",
@@ -60,11 +60,12 @@
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
     "semantic-release": "^19.0.2",
+    "styled-components": "^6.1.8",
     "typescript": "^4.5.5",
-    "vite": "^2.7.13"
+    "vite": "^5.0.12"
   },
   "peerDependencies": {
-    "@binarycapsule/ui-capsules": ">=6.3",
+    "@binarycapsule/ui-capsules": ">=7.0.4",
     "react": ">=16.8",
     "react-dom": ">=16.8"
   },
@@ -75,7 +76,8 @@
     "clean": "rm -rf dist",
     "build": "npm run clean && tsc -p tsconfig.prod.json",
     "pack": "npm run build && npm pack",
-    "semantic-release": "semantic-release"
+    "semantic-release": "semantic-release",
+    "types": "tsc -p tsconfig.json"
   },
   "eslintConfig": {
     "extends": [

@@ -1,55 +1,62 @@
 import React from 'react';
-import { darkTheme, styled } from '@binarycapsule/ui-capsules';
+import styled from 'styled-components';
 import { Icon } from '../../icons/Icon';
 import { IconType } from '../../icons/icons';
 
-export const StyledButton = styled('button', {
-  display: 'inline-flex',
-  justifyContent: 'center',
-  alignItems: 'center',
-  width: 28,
-  height: 28,
-  marginLeft: 4,
-  border: 'none',
-  background: 'none',
-  transition: 'opacity 100ms ease-in-out 0s',
-  padding: 0,
-  borderRadius: '2px',
-  color: '$neutral100',
+interface StyledButtonProps {
+  $isActive?: boolean;
+}
 
-  [`.${darkTheme} &`]: {
-    color: '$neutral700',
-  },
+export const StyledButton = styled.button<StyledButtonProps>(
+  ({ theme }) => ({
+    display: 'inline-flex',
+    justifyContent: 'center',
+    alignItems: 'center',
+    width: 28,
+    height: 28,
+    marginLeft: 4,
+    border: 'none',
+    background: 'none',
+    transition: 'opacity 100ms ease-in-out 0s',
+    padding: 0,
+    borderRadius: '2px',
+    color: theme.colors.neutral100,
 
-  '&:first-of-type': {
-    marginLeft: 0,
-  },
-
-  '&:focus': {
-    outline: 'none',
-  },
-
-  variants: {
-    isActive: {
-      true: {
-        background: '$neutral600',
-
-        [`.${darkTheme} &`]: {
-          background: '$neutral100',
-        },
-      },
+    '.darkTheme &': {
+      color: theme.colors.neutral700,
     },
+
+    '&:first-of-type': {
+      marginLeft: 0,
+    },
+
+    '&:focus': {
+      outline: 'none',
+    },
+  }),
+
+  ({ $isActive, theme }) => {
+    if ($isActive) {
+      return {
+        background: theme.colors.neutral600,
+
+        '.darkTheme &': {
+          background: theme.colors.neutral100,
+        },
+      };
+    }
+    return {};
   },
-});
+);
 
 interface ToolbarButtonProps extends React.ComponentPropsWithoutRef<'button'> {
   icon: IconType;
   isActive?: boolean;
 }
 
-export const ToolbarButton: React.FC<ToolbarButtonProps> = ({ icon, ...rest }) => {
+export const ToolbarButton = ({ icon, isActive, ...rest }: ToolbarButtonProps) => {
   return (
-    <StyledButton type="button" {...rest}>
+    <StyledButton type="button" $isActive={isActive} {...rest}>
       <Icon icon={icon} size={18} />
     </StyledButton>
   );

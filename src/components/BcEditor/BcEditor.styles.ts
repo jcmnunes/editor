@@ -1,6 +1,7 @@
-import { styled, Box } from '@binarycapsule/ui-capsules';
+import { Box } from '@binarycapsule/ui-capsules';
+import styled from 'styled-components';
 
-export const StyledBcEditor = styled('section', {
+export const StyledBcEditor = styled.section({
   display: 'flex',
   flexDirection: 'column',
   margin: '0 48px',
@@ -12,15 +13,15 @@ export const StyledBcEditor = styled('section', {
   },
 });
 
-export const EditorWrapper = styled(Box, {
+export const EditorWrapper = styled(Box)(({ theme }) => ({
   width: '100%',
   height: '100%',
   flex: 1,
-  border: `1px solid $neutral200`,
+  border: `1px solid ${theme.colors.neutral200}`,
   borderRadius: 4,
   overflow: 'hidden',
 
   '@media (min-width: 1000px)': {
     width: 480,
   },
-});
+}));

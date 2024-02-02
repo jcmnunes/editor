@@ -1,36 +1,28 @@
 import React from 'react';
 import { Button, Flex, Text } from '@binarycapsule/ui-capsules';
+import { useTheme } from 'styled-components';
 
 export const LandingHeader = () => {
+  const theme = useTheme();
+
   return (
-    <Flex direction="column" align="center" css={{ py: '$7' }}>
+    <Flex direction="column" align="center" style={{ padding: '28px 0' }}>
       <Text
-        css={{
+        style={{
           fontFamily: 'Lenox, sans-serif',
           textTransform: 'uppercase',
           fontSize: '50px',
           lineHeight: '50px',
           fontWeight: 600,
-          color: '$primary500',
+          color: theme.colors.primary500,
         }}
       >
         BC Editor
       </Text>
 
-      <Text size="md" css={{ color: '$neutral500' }}>
+      <Text size="md" style={{ color: theme.colors.neutral500 }}>
         Rich text editor powered by Prosemirror
       </Text>
-
-      <Flex>
-        <Text
-          css={{
-            color: '$neutral500',
-            fontFamily: 'Lenox, sans-serif',
-          }}
-        >
-          BinaryCapsule
-        </Text>
-      </Flex>
 
       <Button
         as="a"
@@ -38,7 +30,7 @@ export const LandingHeader = () => {
         leftIcon="github"
         variant="secondary"
         iconVariant="outline"
-        css={{ mt: '$5' }}
+        style={{ marginTop: 20 }}
       >
         GitHub
       </Button>

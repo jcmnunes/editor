@@ -1,32 +1,20 @@
 import './styles.css';
 import React from 'react';
-import { globalCss } from '@stitches/react';
+import { Box, IconButton, useUiCapsContext } from '@binarycapsule/ui-capsules';
 import { Main } from './App.styles';
-import { Box, IconButton, useTheme } from '@binarycapsule/ui-capsules';
 import { BcEditor } from './components/BcEditor/BcEditor';
 import { LandingHeader } from './components/LandingHeader/LandingHeader';
 
-const globalStyles = globalCss({
-  body: {
-    color: '$neutral700',
-    background: '$neutral100',
-    width: '100%',
-    height: '100%',
-  },
-});
-
 export const App = () => {
-  globalStyles();
-
-  const { isDark, setTheme } = useTheme();
+  const { isDarkTheme, setTheme } = useUiCapsContext();
 
   return (
     <Main>
-      <Box css={{ position: 'absolute', top: '$4', right: '$4' }}>
+      <Box style={{ position: 'absolute', top: 16, right: 16 }}>
         <IconButton
-          icon={isDark ? 'moon' : 'sun'}
+          icon={isDarkTheme ? 'moon' : 'sun'}
           variant="ghostGray"
-          onClick={() => setTheme(isDark ? 'light' : 'dark')}
+          onClick={() => setTheme(isDarkTheme ? 'light' : 'dark')}
           aria-label="Change theme"
         />
       </Box>
