@@ -1,6 +1,6 @@
 import React from 'react';
-import { Button, Flex, Text } from '@binarycapsule/ui-capsules';
 import { useTheme } from 'styled-components';
+import { Button, Flex, Text } from '@binarycapsule/ui-capsules';
 
 export const LandingHeader = () => {
   const theme = useTheme();
