@@ -6,7 +6,7 @@ export const StyledInput = styled.input(({ theme }) => ({
   border: 'none',
   padding: '6px 8px',
   margin: '0px 4px 0px 0px',
-  fontSize: '$sm',
+  fontSize: theme.fontSizes.sm,
   color: theme.colors.neutral100,
   fontWeight: 500,
   background: theme.colors.neutral600,
