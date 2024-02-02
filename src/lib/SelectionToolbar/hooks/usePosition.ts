@@ -1,5 +1,5 @@
 import { EditorView } from 'prosemirror-view';
-import useMeasure, { UseMeasureRef } from 'react-use/lib/useMeasure';
+import { useMeasure, UseMeasureRef } from '../../hooks/useMeasure';
 
 interface MenuPosition {
   left: number;

@@ -28,7 +28,7 @@ npm i @binarycapsule/editor
 Peer dependencies:
 
 ```
-npm i react react-dom @binarycapsule/ui-capsules @stitches/react
+npm i react react-dom @binarycapsule/ui-capsules
 ```
 
 Note: this package is meant to be used inside a app already setup with the [ui-capsules](https://github.com/jcmnunes/ui-capsules) package.

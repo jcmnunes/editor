@@ -1,5 +1,5 @@
 import React, { useCallback, useEffect, useState } from 'react';
-import useLocalStorage from 'react-use/lib/useLocalStorage';
+import { useLocalStorage } from '../../hooks/useLocalStorage';
 import { defaultValue } from './defaultValue';
 import { EditorRef } from '../../lib';
 

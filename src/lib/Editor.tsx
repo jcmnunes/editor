@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { forwardRef, useCallback, useEffect, useImperativeHandle, useRef, useState } from 'react';
-import useEffectOnce from 'react-use/lib/useEffectOnce';
+import { useEffectOnce } from './hooks/useEffectOnce';
 import { history } from 'prosemirror-history';
 import { keymap } from 'prosemirror-keymap';
 import { Schema } from 'prosemirror-model';
