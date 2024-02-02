@@ -24,17 +24,6 @@ export const LandingHeader = () => {
         Rich text editor powered by Prosemirror
       </Text>
 
-      <Flex>
-        <Text
-          style={{
-            color: theme.colors.neutral500,
-            fontFamily: 'Lenox, sans-serif',
-          }}
-        >
-          BinaryCapsule
-        </Text>
-      </Flex>
-
       <Button
         as="a"
         href="https://github.com/jcmnunes/editor"
